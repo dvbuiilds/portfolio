@@ -2,55 +2,68 @@ import React from "react";
 import { Title } from "../common";
 import { SectionTitle } from "./SectionTitle";
 import { WorkHeader } from "./WorkHeader";
+import { NameHeading } from "./NameHeading";
+import { Contact } from "./Contact";
+import { Table } from "./Table";
 
 interface ResumePropsType {}
 export const Resume: React.FC<ResumePropsType> = (props) => {
   return (
     <div className="w-[850px] flex flex-col items-center justify-center">
-      <h4 className="text-2xl font-bold dark:text-white uppercase">
-        Dhairya Varshney
-      </h4>
-      {/** Personal Credentials */}
-      <p>
-        +91-9911720868 | dhairyavarshneyoffice@gmail.com | LeetCode | Figma |
-        GitHub | Twitter | LinkedIn
-      </p>
+      <section>
+        <NameHeading>Dhairya Varshney</NameHeading>
+        <Contact
+          phoneNumber="+91-9911720868"
+          email="dhairyavarshneyoffice@gmail.com"
+          socialHandles={[
+            {
+              handleName: "LeetCode",
+              profileLink: "https://leetcode.com/dhairya-varshney/",
+            },
+            {
+              handleName: "Figma",
+              profileLink: "https://www.figma.com/@dvbuiilds",
+            },
+            {
+              handleName: "GitHub",
+              profileLink: "https://github.com/dvbuiilds",
+            },
+            {
+              handleName: "Twitter",
+              profileLink: "https://twitter.com/dvbuiilds",
+            },
+            {
+              handleName: "LinkedIn",
+              profileLink: "https://www.linkedin.com/in/dhairya-varshney/",
+            },
+          ]}
+        />
+      </section>
       <section className="w-full">
         <SectionTitle textTransform={"uppercase"}>Education</SectionTitle>
-        <table className="border-separate border-spacing-x-3">
-          <thead>
-            <tr>
-              <th className="font-medium">Course</th>
-              <th className="font-medium">Year</th>
-              <th className="font-medium">Institution</th>
-              <th className="font-medium">CGPA/Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="text-center">B.Tech (Information Technology)</td>
-              <td className="text-center">2023</td>
-              <td className="text-center">Delhi Technological University</td>
-              <td className="text-center">9.20 CGPA</td>
-            </tr>
-            <tr>
-              <td className="text-center">AISSCE(Class 12)</td>
-              <td className="text-center">2018</td>
-              <td className="text-center">
-                D.A.V. Public School, Pushpanjali Enclave
-              </td>
-              <td className="text-center">93.40 %</td>
-            </tr>
-            <tr>
-              <td className="text-center">AISSCE(Class 10)</td>
-              <td className="text-center">2016</td>
-              <td className="text-center">
-                D.A.V. Public School, Pushpanjali Enclave
-              </td>
-              <td className="text-center">9.60 CGPA</td>
-            </tr>
-          </tbody>
-        </table>
+        <Table
+          columns={["Course", "Year", "Institution", "CGPA/Percentage"]}
+          data={[
+            [
+              "B.Tech (Information Technology)",
+              "2019-2023",
+              "Delhi Technological University",
+              "9.20 CGPA",
+            ],
+            [
+              "AISSCE(Class 12)",
+              "2018",
+              "D.A.V. Public School, Pushpanjali Enclave",
+              "93.40 %",
+            ],
+            [
+              "AISSCE(Class 10)",
+              "2016",
+              "D.A.V. Public School, Pushpanjali Enclave",
+              "9.60 CGPA",
+            ],
+          ]}
+        />
       </section>
       <section className="w-full">
         <SectionTitle textTransform={"uppercase"}>
