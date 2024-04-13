@@ -1,168 +1,169 @@
 import React from "react";
-import { Title } from "../common";
+
+// COMPONENTS
 import { SectionTitle } from "./SectionTitle";
 import { WorkHeader } from "./WorkHeader";
 import { NameHeading } from "./NameHeading";
 import { Contact } from "./Contact";
 import { Table } from "./Table";
 
+// THIRD_PARTY
+import parse from "html-react-parser";
+
+// DATA
+import data from "./data.json";
+
+const ResumeSections = {
+  RESUME_HEADER: "resumeHeader",
+  QUALIFICATIONS: "qualifications",
+  EXPERIENCE: "experience",
+  PROJECTS: "projects",
+  ACHIEVEMENTS: "achievements",
+  SKILLS: "skills",
+  FOOTER: "footer",
+};
+
 interface ResumePropsType {}
 export const Resume: React.FC<ResumePropsType> = (props) => {
   return (
     <div className="w-[850px] flex flex-col items-center justify-center">
-      <section>
-        <NameHeading>Dhairya Varshney</NameHeading>
-        <Contact
-          phoneNumber="+91-9911720868"
-          email="dhairyavarshneyoffice@gmail.com"
-          socialHandles={[
-            {
-              handleName: "LeetCode",
-              profileLink: "https://leetcode.com/dhairya-varshney/",
-            },
-            {
-              handleName: "Figma",
-              profileLink: "https://www.figma.com/@dvbuiilds",
-            },
-            {
-              handleName: "GitHub",
-              profileLink: "https://github.com/dvbuiilds",
-            },
-            {
-              handleName: "Twitter",
-              profileLink: "https://twitter.com/dvbuiilds",
-            },
-            {
-              handleName: "LinkedIn",
-              profileLink: "https://www.linkedin.com/in/dhairya-varshney/",
-            },
-          ]}
-        />
-      </section>
-      <section className="w-full">
-        <SectionTitle textTransform={"uppercase"}>Education</SectionTitle>
-        <Table
-          columns={["Course", "Year", "Institution", "CGPA/Percentage"]}
-          data={[
-            [
-              "B.Tech (Information Technology)",
-              "2019-2023",
-              "Delhi Technological University",
-              "9.20 CGPA",
-            ],
-            [
-              "AISSCE(Class 12)",
-              "2018",
-              "D.A.V. Public School, Pushpanjali Enclave",
-              "93.40 %",
-            ],
-            [
-              "AISSCE(Class 10)",
-              "2016",
-              "D.A.V. Public School, Pushpanjali Enclave",
-              "9.60 CGPA",
-            ],
-          ]}
-        />
-      </section>
-      <section className="w-full">
-        <SectionTitle textTransform={"uppercase"}>
-          INTERNSHIPS / WORKING EXPERIENCE
-        </SectionTitle>
-        <WorkHeader
-          type="job"
-          index={1}
-          company="MakeMyTrip India Pvt Ltd"
-          location="Bangalore"
-          jobRole="Software Engineer(Frontend)"
-          duration="Sept 2023 - Present"
-        >
-          <ul className="list-disc">
-            <li>
-              Crafting UI Components for Common Platform Library using ReactJs,
-              TypeScript, StoryBook and Figma.
-            </li>
-          </ul>
-        </WorkHeader>
-      </section>
-      <section className="w-full">
-        <SectionTitle textTransform={"uppercase"}>PROJECTS</SectionTitle>
-        <WorkHeader
-          type="project"
-          index={1}
-          title="Sugriva (Hiring Management Solution for Solopreneurs) — ReactJs+Redux, NodeJs"
-          ProjectLink={
-            <a
-              className="no-underline text-blue-600"
-              href="https://github.com/dvbuiilds/sugriva"
-            >
-              (GitHub)
-            </a>
+      {data.map((resumeSection, index) => {
+        switch (resumeSection.section) {
+          case ResumeSections.RESUME_HEADER: {
+            return (
+              <section key={index}>
+                <NameHeading>{resumeSection?.data?.nameHeading}</NameHeading>
+                <Contact
+                  phoneNumber={resumeSection?.data?.contact?.phoneNumber}
+                  email={resumeSection?.data?.contact?.email}
+                  socialHandles={resumeSection?.data?.contact?.socialHandles}
+                />
+              </section>
+            );
           }
-        >
-          <ul className="list-disc">
-            <li>
-              Full Stack app with 2 distinct views - <b>Recruiter View</b> &{" "}
-              <b>Candidate View</b> for efficient interaction.
-            </li>
-            <li>
-              <b>Built-in Video Interview</b> feature using <b>Socket.io</b> and{" "}
-              <b>PeerJS</b> enables smooth and real-time video interviews.
-            </li>
-            <li>
-              Leveraged Socket.io for <b>Text Chat</b> for message exchange
-              during Interview.
-            </li>
-            <li>
-              Developed ExpressJs server for handling Auth+Form submission APIs
-              & concurrent Socket.io events+callbacks.
-            </li>
-            <li>
-              Leveraged <b>MongoDB</b> database to store and manage candidate
-              and interview data securely.
-            </li>
-            <li>
-              Implemented <b>Protected Routes</b> to ensure authenticated and
-              authorized access to the application.
-            </li>
-          </ul>
-        </WorkHeader>
-      </section>
-      <section className="w-full">
-        <SectionTitle textTransform="uppercase">ACHIEVEMENTS</SectionTitle>
-        <WorkHeader type="others">
-          <ul className="list-disc">
-            <li>
-              <b>
-                Competed in 600+ Questions on Leetcode with a Daily Streak of
-                300+ days and a Contest Rating of 1501.
-              </b>
-            </li>
-            <li>
-              <b>
-                Attended Urban Company on-Campus BootCamp series & won Exclusive
-                Goodies.
-              </b>
-            </li>
-          </ul>
-        </WorkHeader>
-      </section>
-      <section className="w-full">
-        <SectionTitle textTransform="uppercase">SKILLS</SectionTitle>
-        <WorkHeader type="others">
-          <ul className="list-disc">
-            <li>
-              <b>Programming/Tools & Technologies:</b> Javascript, jQuery,
-              ReactJs with Redux, ExpressJs, HTML, CSS, C++, Python-Django,
-              Linux, Git, Google Colab, Jupyter Notebook, BeautifulSoup,
-              Selenium, Figma, WordPress.
-            </li>
-          </ul>
-        </WorkHeader>
-      </section>
-      <a href="https://bit.ly/dv-sup-doc" className="text-blue-600">
-        Supporting Documents
-      </a>
+          case ResumeSections.QUALIFICATIONS: {
+            return (
+              <section key={index} className="w-full">
+                <SectionTitle textTransform={"uppercase"}>
+                  {resumeSection?.data?.sectionTitle}
+                </SectionTitle>
+                <Table
+                  columns={resumeSection?.data?.tableColumns}
+                  data={resumeSection?.data?.rowData}
+                />
+              </section>
+            );
+          }
+          case ResumeSections.EXPERIENCE: {
+            return (
+              <section key={index} className="w-full">
+                <SectionTitle textTransform={"uppercase"}>
+                  {resumeSection?.data?.sectionTitle}
+                </SectionTitle>
+                {resumeSection?.data?.experienceData?.map((work, workIndex) => (
+                  <WorkHeader
+                    key={workIndex}
+                    type="job"
+                    index={workIndex + 1}
+                    company={work?.company}
+                    location={work?.location}
+                    jobRole={work?.jobRole}
+                    link={work?.link}
+                    duration={work?.duration}
+                  >
+                    <ul className="list-disc">
+                      {work?.workDescription?.map((description, descIndex) => (
+                        <li key={descIndex}>{parse(description)}</li>
+                      ))}
+                    </ul>
+                  </WorkHeader>
+                ))}
+              </section>
+            );
+          }
+          case ResumeSections.PROJECTS: {
+            return (
+              <section key={index} className="w-full">
+                <SectionTitle textTransform={"uppercase"}>
+                  {resumeSection?.data?.sectionTitle}
+                </SectionTitle>
+                {resumeSection?.data?.projects?.map((project, projectIndex) => (
+                  <WorkHeader
+                    key={projectIndex}
+                    type="project"
+                    index={projectIndex + 1}
+                    title={project?.projectTitle}
+                    ProjectLink={
+                      project?.projectLink ? (
+                        <a
+                          className="underline text-blue-600"
+                          href={project?.projectLink?.link}
+                        >
+                          ({project?.projectLink?.label})
+                        </a>
+                      ) : null
+                    }
+                  >
+                    <ul className="list-disc">
+                      {project?.description?.map((line, lineIndex) => (
+                        <li key={lineIndex}>{parse(line)}</li>
+                      ))}
+                    </ul>
+                  </WorkHeader>
+                ))}
+              </section>
+            );
+          }
+          case ResumeSections.ACHIEVEMENTS: {
+            return (
+              <section key={index} className="w-full">
+                <SectionTitle textTransform="uppercase">
+                  {resumeSection?.data?.sectionTitle}
+                </SectionTitle>
+                <WorkHeader type="others">
+                  <ul className="list-disc">
+                    {resumeSection?.data?.descriptions?.map(
+                      (line, lineIndex) => (
+                        <li key={lineIndex}>{parse(line)}</li>
+                      )
+                    )}
+                  </ul>
+                </WorkHeader>
+              </section>
+            );
+          }
+          case ResumeSections.SKILLS: {
+            return (
+              <section key={index} className="w-full">
+                <SectionTitle textTransform="uppercase">
+                  {resumeSection?.data?.sectionTitle}
+                </SectionTitle>
+                <WorkHeader type="others">
+                  <ul className="list-disc">
+                    {resumeSection?.data?.descriptions?.map(
+                      (skill, skillIndex) => (
+                        <li key={skillIndex}>{parse(skill)}</li>
+                      )
+                    )}
+                  </ul>
+                </WorkHeader>
+              </section>
+            );
+          }
+          case ResumeSections.FOOTER: {
+            return (
+              <section key={index}>
+                <a
+                  href={resumeSection?.footerLink?.link}
+                  className="underline text-blue-600"
+                >
+                  {resumeSection?.footerLink?.label}
+                </a>
+              </section>
+            );
+          }
+        }
+      })}
     </div>
   );
 };
