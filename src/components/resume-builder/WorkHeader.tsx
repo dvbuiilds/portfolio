@@ -6,7 +6,7 @@ type WorkHeaderPropsType =
       index: number;
       company: string;
       jobRole: string;
-      link?: string;
+      link?: string | null;
       location: string;
       duration: string;
       children?: React.ReactElement;
@@ -33,17 +33,19 @@ export const WorkHeader: React.FC<WorkHeaderPropsType> = (props) => {
         <div className="flex flex-col items-start my-1">
           <div className="flex flex-row items-center justify-between w-full">
             <div className="font-bold">
-              {index}. {company}, {location}
-              {link ? (
+              {`${index}.  ${company}, ${location} `}
+              {jobRole ? (
                 <>
-                  -{" "}
-                  <a href={link} className="underline text-blue-500">
-                    {jobRole}
-                  </a>
+                  {"- "}
+                  {link ? (
+                    <a href={link} className="underline text-blue-500">
+                      {jobRole}
+                    </a>
+                  ) : (
+                    jobRole
+                  )}
                 </>
-              ) : (
-                jobRole
-              )}
+              ) : null}
             </div>
             <div>{duration}</div>
           </div>

@@ -26,7 +26,7 @@ const ResumeSections = {
 interface ResumePropsType {}
 export const Resume: React.FC<ResumePropsType> = (props) => {
   return (
-    <div className="w-[850px] flex flex-col items-center justify-center">
+    <div className="w-[890px] flex flex-col items-center justify-center border border-gray-400 rounded px-3 py-3">
       {data.map((resumeSection, index) => {
         switch (resumeSection.section) {
           case ResumeSections.RESUME_HEADER: {
@@ -44,13 +44,17 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
           case ResumeSections.QUALIFICATIONS: {
             return (
               <section key={index} className="w-full">
-                <SectionTitle textTransform={"uppercase"}>
-                  {resumeSection?.data?.sectionTitle}
-                </SectionTitle>
-                <Table
-                  columns={resumeSection?.data?.tableColumns}
-                  data={resumeSection?.data?.rowData}
-                />
+                {resumeSection?.data?.tableColumns ? (
+                  <>
+                    <SectionTitle textTransform={"uppercase"}>
+                      {resumeSection?.data?.sectionTitle}
+                    </SectionTitle>
+                    <Table
+                      columns={resumeSection?.data?.tableColumns}
+                      data={resumeSection?.data?.rowData}
+                    />
+                  </>
+                ) : null}
               </section>
             );
           }

@@ -20,7 +20,7 @@ export const Contact: React.FC<ContactPropsType> = (props) => {
       <span>
         {email ? (
           <>
-            <a href={`mailto:${email}`}>{email}</a>
+            <a href={`mailto: ${email}`}>{email}</a>
             {" | "}
           </>
         ) : (
