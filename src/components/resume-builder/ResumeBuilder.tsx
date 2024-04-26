@@ -1,125 +1,79 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { ResumeFormData } from "./types";
 
 // THIRD_PARTY
 import { motion } from "framer-motion";
+import { HeaderSectionForm } from "./resume-form/HeaderSectionForm";
+import { QualificationsSectionForm } from "./resume-form/QualificationsSectionForm";
 
 interface ResumeBuilderPropsType {}
 
 export const ResumeBuilder: React.FC<ResumeBuilderPropsType> = (props) => {
   const [step, setStep] = useState<number>(0);
-  const [resumeData, setResumeData] = useState<ResumeFormData>();
+  const [resumeData, setResumeData] = useState<ResumeFormData>({
+    headerSection: {
+      nameHeading: "",
+      contact: {
+        email: "",
+        phoneNumber: "",
+        socialHandles: [{ handleName: "", profileLink: "" }],
+      },
+    },
+    qualificationsSection: {
+      sectionTitle: "",
+      titleLetterCase: "uppercase",
+      tableColumns: [""],
+      rowData: [[""]],
+    },
+    workExperienceSection: {
+      sectionTitle: "",
+      titleLetterCase: "uppercase",
+      experienceData: [
+        {
+          company: "",
+          location: "",
+          jobRole: "",
+          link: undefined,
+          duration: "",
+          workDescription: [""],
+        },
+      ],
+    },
+    projectsSection: {
+      sectionTitle: "",
+      titleLetterCase: "uppercase",
+      projects: [],
+    },
+    detailsSection: {
+      sectionTitle: "",
+      titleLetterCase: "uppercase",
+      descriptions: [],
+    },
+    footerSection: {
+      section: "",
+      footerLink: { label: "", link: "" },
+    },
+  });
 
-  const renderSubForms = useCallback(() => {
+  const renderSubForms = () => {
     switch (step) {
       case 0: {
         return (
-          <motion.div
+          <HeaderSectionForm
             key={step}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-5">
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Birendra Kumar"
-                // required
-              />
-            </div>
-            <div className="mb-5">
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="email@example.com"
-                // required
-              />
-            </div>
-            <div className="mb-5">
-              <label
-                htmlFor="social"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Social Handles
-              </label>
-              <input
-                type="text"
-                id="social"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                // required
-              />
-            </div>
-          </motion.div>
+            value={resumeData.headerSection}
+            setValue={setResumeData}
+            id={"headerSection"}
+          />
         );
       }
       case 1: {
         return (
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-5">
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Qualifications
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Birendra Kumar"
-                // required
-              />
-            </div>
-            <div className="mb-5">
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="email@example.com"
-                // required
-              />
-            </div>
-            <div className="mb-5">
-              <label
-                htmlFor="social"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Social Handles
-              </label>
-              <input
-                type="text"
-                id="social"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                // required
-              />
-            </div>
-          </motion.div>
+          <QualificationsSectionForm
+            id="qualificationsSection"
+            value={resumeData.qualificationsSection}
+            setValue={setResumeData}
+          />
         );
       }
       case 2: {
@@ -398,7 +352,7 @@ export const ResumeBuilder: React.FC<ResumeBuilderPropsType> = (props) => {
         );
       }
     }
-  }, [step]);
+  };
 
   const handlePreviousButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>

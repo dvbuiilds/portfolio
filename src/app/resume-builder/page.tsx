@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center w-full">
         <Title>Resume Builder</Title>
         <ResumeBuilder />
-        <Resume />
+        {/* <Resume /> */}
       </div>
       <div>(AdBanner here)</div>
     </div>
