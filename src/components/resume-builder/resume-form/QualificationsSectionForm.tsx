@@ -113,7 +113,7 @@ export const QualificationsSectionForm: React.FC<
           type="text"
           id="sectionTitle"
           className={inputFieldClassNameValue}
-          placeholder="Education"
+          placeholder="Eg. Education"
           value={value.sectionTitle}
           onChange={handleSectionTitleChange}
           // required

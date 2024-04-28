@@ -76,6 +76,7 @@ export interface ResumeFormData {
   qualificationsSection: QualificationsData;
   workExperienceSection: WorkingExperienceData;
   projectsSection: ProjectData;
-  detailsSection: DetailsData;
+  achievementsSection: DetailsData;
+  skillsSection: DetailsData;
   footerSection: FooterSection;
 }

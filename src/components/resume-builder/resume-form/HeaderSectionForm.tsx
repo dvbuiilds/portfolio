@@ -169,7 +169,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
                 id="handleName"
                 name="handleName"
                 className={inputFieldClassNameValue}
-                placeholder="Handle Name e.g., LinkedIn."
+                placeholder="Eg. LinkedIn, GitHub, etc"
                 value={value.contact.socialHandles[index].handleName}
                 onChange={(event) =>
                   handleSocialHandlesChange(
@@ -193,6 +193,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
                 type="text"
                 id="profileLink"
                 name="profileLink"
+                placeholder="https://github.com/<username>"
                 className={inputFieldClassNameValue}
                 value={value.contact.socialHandles[index].profileLink}
                 onChange={(event) =>
