@@ -1,35 +1,64 @@
-import React from "react";
-
-// COMPONENTS
-import { SectionTitle } from "./SectionTitle";
-import { WorkHeader } from "./WorkHeader";
-import { NameHeading } from "./NameHeading";
-import { Contact } from "./Contact";
-import { Table } from "./Table";
+import React, { useMemo, useState } from 'react';
 
 // THIRD_PARTY
-import parse from "html-react-parser";
+import parse from 'html-react-parser';
+
+// COMPONENTS
+import { SectionTitle } from './SectionTitle';
+import { WorkHeader } from './WorkHeader';
+import { NameHeading } from './NameHeading';
+import { Contact } from './Contact';
+import { Table } from './Table';
 
 // DATA
-import data from "./data.json";
+import data from './data.json';
 
-const ResumeSections = {
-  RESUME_HEADER: "resumeHeader",
-  QUALIFICATIONS: "qualifications",
-  EXPERIENCE: "experience",
-  PROJECTS: "projects",
-  ACHIEVEMENTS: "achievements",
-  SKILLS: "skills",
-  FOOTER: "footer",
+// UTILS
+import { ResumeSectionsName } from './resume-utils';
+import { ResumeFormData, ResumeType } from './types';
+
+const transformResumeFormStateToData = (
+  resumeState: ResumeFormData,
+): ResumeType => {
+  // @ts-expect-error
+  return Object.keys(resumeState).map((stateSection) => {
+    if (
+      stateSection === ResumeSectionsName.RESUME_HEADER ||
+      stateSection === ResumeSectionsName.FOOTER
+    ) {
+      return {
+        section: stateSection,
+        data: resumeState[stateSection as keyof ResumeFormData],
+      };
+    }
+    return {
+      section: stateSection,
+      data: {
+        ...resumeState[stateSection as keyof ResumeFormData],
+        titleLetterCase: 'uppercase',
+      },
+    };
+  });
 };
 
-interface ResumePropsType {}
+interface ResumePropsType {
+  resumeState: ResumeFormData;
+}
+
 export const Resume: React.FC<ResumePropsType> = (props) => {
+  const { resumeState } = props;
+  // const [data, setData] = useState(transformResumeFormStateToData(resumeState));
+  // console.log({ resumeState, data });
+  // const data = useMemo(
+  //   () => transformResumeFormStateToData(resumeState),
+  //   [resumeState]
+  // );
+
   return (
     <div className="w-[890px] flex flex-col items-center justify-center border border-gray-400 rounded px-3 py-3">
       {data.map((resumeSection, index) => {
         switch (resumeSection.section) {
-          case ResumeSections.RESUME_HEADER: {
+          case ResumeSectionsName.RESUME_HEADER: {
             return (
               <section key={index}>
                 <NameHeading>{resumeSection?.data?.nameHeading}</NameHeading>
@@ -41,12 +70,12 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
               </section>
             );
           }
-          case ResumeSections.QUALIFICATIONS: {
+          case ResumeSectionsName.QUALIFICATIONS: {
             return (
               <section key={index} className="w-full">
                 {resumeSection?.data?.tableColumns ? (
                   <>
-                    <SectionTitle textTransform={"uppercase"}>
+                    <SectionTitle textTransform={'uppercase'}>
                       {resumeSection?.data?.sectionTitle}
                     </SectionTitle>
                     <Table
@@ -58,10 +87,10 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
               </section>
             );
           }
-          case ResumeSections.EXPERIENCE: {
+          case ResumeSectionsName.EXPERIENCE: {
             return (
               <section key={index} className="w-full">
-                <SectionTitle textTransform={"uppercase"}>
+                <SectionTitle textTransform={'uppercase'}>
                   {resumeSection?.data?.sectionTitle}
                 </SectionTitle>
                 {resumeSection?.data?.experienceData?.map((work, workIndex) => (
@@ -85,10 +114,10 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
               </section>
             );
           }
-          case ResumeSections.PROJECTS: {
+          case ResumeSectionsName.PROJECTS: {
             return (
               <section key={index} className="w-full">
-                <SectionTitle textTransform={"uppercase"}>
+                <SectionTitle textTransform={'uppercase'}>
                   {resumeSection?.data?.sectionTitle}
                 </SectionTitle>
                 {resumeSection?.data?.projects?.map((project, projectIndex) => (
@@ -118,7 +147,7 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
               </section>
             );
           }
-          case ResumeSections.ACHIEVEMENTS: {
+          case ResumeSectionsName.ACHIEVEMENTS: {
             return (
               <section key={index} className="w-full">
                 <SectionTitle textTransform="uppercase">
@@ -129,14 +158,14 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
                     {resumeSection?.data?.descriptions?.map(
                       (line, lineIndex) => (
                         <li key={lineIndex}>{parse(line)}</li>
-                      )
+                      ),
                     )}
                   </ul>
                 </WorkHeader>
               </section>
             );
           }
-          case ResumeSections.SKILLS: {
+          case ResumeSectionsName.SKILLS: {
             return (
               <section key={index} className="w-full">
                 <SectionTitle textTransform="uppercase">
@@ -147,14 +176,14 @@ export const Resume: React.FC<ResumePropsType> = (props) => {
                     {resumeSection?.data?.descriptions?.map(
                       (skill, skillIndex) => (
                         <li key={skillIndex}>{parse(skill)}</li>
-                      )
+                      ),
                     )}
                   </ul>
                 </WorkHeader>
               </section>
             );
           }
-          case ResumeSections.FOOTER: {
+          case ResumeSectionsName.FOOTER: {
             return (
               <section key={index}>
                 <a

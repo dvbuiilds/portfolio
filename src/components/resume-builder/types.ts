@@ -1,4 +1,4 @@
-export type Resume = ResumeSections[];
+export type ResumeType = ResumeSections[];
 
 export type ResumeSections =
   | { section: string; data: ResumeHeaderData }

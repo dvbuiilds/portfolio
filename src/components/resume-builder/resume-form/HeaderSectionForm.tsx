@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ResumeFormData, ResumeHeaderData } from "../types";
-import { FieldValueProps } from "./types";
-import { BsXCircleFill } from "react-icons/bs";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ResumeHeaderData } from '../types';
+import { FieldValueProps } from './types';
+import { BsXCircleFill } from 'react-icons/bs';
 
 interface HeaderSectionFormPropsType
   extends FieldValueProps<ResumeHeaderData> {}
 
 export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
-  props
+  props,
 ) => {
   const { value, setValue, id } = props;
 
@@ -20,7 +20,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
   };
 
   const handlePhoneOrEmailChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setValue((prev) => ({
       ...prev,
@@ -28,7 +28,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
         ...prev.headerSection,
         contact: {
           ...prev.headerSection.contact,
-          [event.target.name as "phoneNumber" | "email"]: event.target.value,
+          [event.target.name as 'phoneNumber' | 'email']: event.target.value,
         },
       },
     }));
@@ -36,8 +36,8 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
 
   const handleSocialHandlesChange = (
     index: number,
-    key: "handleName" | "profileLink",
-    value: string
+    key: 'handleName' | 'profileLink',
+    value: string,
   ) => {
     setValue((prev) => {
       let socialHandles = prev.headerSection.contact.socialHandles;
@@ -54,11 +54,11 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
 
   const handleDeleteSocialHandleField = (index: number) => {
     if (value.contact.socialHandles.length === 1) return;
-    if (!confirm("Are you sure you want to delete the current handle?")) return;
+    if (!confirm('Are you sure you want to delete the current handle?')) return;
     setValue((prev) => {
       let socialHandles = prev.headerSection.contact.socialHandles;
       socialHandles = socialHandles.filter(
-        (_handle, handleInd) => index !== handleInd
+        (_handle, handleInd) => index !== handleInd,
       );
       return {
         ...prev,
@@ -71,12 +71,12 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
   };
 
   const handleAddSocialHandleField = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
     if (value.contact.socialHandles.length === 5) return;
 
-    console.log("add social handle field");
+    console.log('add social handle field');
     setValue((prev) => ({
       ...prev,
       headerSection: {
@@ -85,7 +85,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
           ...prev.headerSection.contact,
           socialHandles: [
             ...prev.headerSection.contact.socialHandles,
-            { handleName: "", profileLink: "" },
+            { handleName: '', profileLink: '' },
           ],
         },
       },
@@ -93,10 +93,10 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
   };
 
   const inputFieldClassNameValue =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500';
 
   const fieldLabelClassNameValue =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+    'block mb-2 text-sm font-medium text-gray-900 ';
 
   return (
     <motion.div
@@ -176,7 +176,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
                     index,
                     // @ts-ignore
                     event.target.name,
-                    event.target.value
+                    event.target.value,
                   )
                 }
                 // required
@@ -201,7 +201,7 @@ export const HeaderSectionForm: React.FC<HeaderSectionFormPropsType> = (
                     index,
                     // @ts-ignore
                     event.target.name,
-                    event.target.value
+                    event.target.value,
                   )
                 }
                 // required

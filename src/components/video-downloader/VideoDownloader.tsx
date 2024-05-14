@@ -36,7 +36,9 @@ export const VideoDownloader = () => {
   return (
     <div className="flex flex-col items-center gap-2 w-full">
       <Title>All-in-One Video Downloader</Title>
-      <Description>Currently, works for videos on YouTube, Instagram and LinkedIn.</Description>
+      <Description>
+        Currently, works for videos on YouTube, Instagram and LinkedIn.
+      </Description>
       <SearchBox
         searchValue={searchVal}
         setSearchValue={setSearchVal}
@@ -51,7 +53,7 @@ export const VideoDownloader = () => {
         <div className="flex flex-col gap-2 items-center">
           {mediaLinks.length ? (
             <div>
-              <h2 className="my-2 text-2xl font-bold dark:text-white">Download Options</h2>
+              <h2 className="my-2 text-2xl font-bold ">Download Options</h2>
               {mediaLinks.map((mediaItem, index) => (
                 <DownloadOption
                   key={index}
@@ -59,7 +61,11 @@ export const VideoDownloader = () => {
                   qualityLabel={mediaItem?.qualityLabel ?? '360p'}
                   contentSize={
                     mediaItem.contentLength
-                      ? `| ${(parseInt(mediaItem.contentLength) / 1024 / 1024).toFixed(2)}MB`
+                      ? `| ${(
+                          parseInt(mediaItem.contentLength) /
+                          1024 /
+                          1024
+                        ).toFixed(2)}MB`
                       : ''
                   }
                   url={mediaItem.url}

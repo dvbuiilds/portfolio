@@ -1,22 +1,22 @@
-import React, { HTMLAttributeAnchorTarget } from "react";
-import { FieldValueProps } from "./types";
-import { WorkingExperienceData } from "../types";
-import { motion } from "framer-motion";
-import { BsXCircleFill } from "react-icons/bs";
+import React from 'react';
+import { FieldValueProps } from './types';
+import { WorkingExperienceData } from '../types';
+import { motion } from 'framer-motion';
+import { BsXCircleFill } from 'react-icons/bs';
 
 interface ExperienceSectionFormPropsType
   extends FieldValueProps<WorkingExperienceData> {}
 
 export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
-  props
+  props,
 ) => {
   const { id, value, setValue } = props;
 
   const inputFieldClassNameValue =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500';
 
   const fieldLabelClassNameValue =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+    'block mb-2 text-sm font-medium text-gray-900 ';
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({
@@ -30,7 +30,7 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
 
   const handleCompanyDetailsChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     setValue((prev) => {
       let updatedExperiencedData = [
@@ -57,12 +57,12 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
         experienceData: [
           ...prev.workExperienceSection.experienceData,
           {
-            company: "",
-            duration: "",
-            jobRole: "",
-            location: "",
-            link: "",
-            workDescription: [""],
+            company: '',
+            duration: '',
+            jobRole: '',
+            location: '',
+            link: '',
+            workDescription: [''],
           },
         ],
       },
@@ -76,7 +76,7 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
         ...prev.workExperienceSection.experienceData,
       ];
       updatedExperienceData = updatedExperienceData.filter(
-        (_com, index) => index !== companyIndex
+        (_com, index) => index !== companyIndex,
       );
       return {
         ...prev,
@@ -91,7 +91,7 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
   const handleCompanyWorkDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     companyIndex: number,
-    descriptionIndex: number
+    descriptionIndex: number,
   ) => {
     setValue((prev) => {
       let updatedExperiencedData = [
@@ -118,7 +118,7 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
         ...newExperienceData[companyIndex],
         workDescription: [
           ...newExperienceData[companyIndex].workDescription,
-          "",
+          '',
         ],
       };
       return {
@@ -133,7 +133,7 @@ export const ExperienceSectionForm: React.FC<ExperienceSectionFormPropsType> = (
 
   const handleDeleteCompanyDescription = (
     companyIndex: number,
-    descIndex: number
+    descIndex: number,
   ) => {
     if (value.experienceData[companyIndex].workDescription.length === 1) return;
     setValue((prev) => {

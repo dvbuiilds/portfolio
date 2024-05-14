@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { FieldValueProps } from "./types";
-import { QualificationsData } from "../types";
-import { motion } from "framer-motion";
-import { BsXCircleFill } from "react-icons/bs";
+import React, { useState } from 'react';
+import { FieldValueProps } from './types';
+import { QualificationsData } from '../types';
+import { motion } from 'framer-motion';
+import { BsXCircleFill } from 'react-icons/bs';
 
 interface QualificationsSectionFormPropsType
   extends FieldValueProps<QualificationsData> {}
@@ -10,19 +10,19 @@ export const QualificationsSectionForm: React.FC<
   QualificationsSectionFormPropsType
 > = (props) => {
   const { id, value, setValue } = props;
-  const [columns, setColumns] = useState<string>(value.tableColumns.join(","));
+  const [columns, setColumns] = useState<string>(value.tableColumns.join(','));
   const [rowWiseData, setRowWiseData] = useState<Array<string>>(
-    value.rowData.map((row) => row.join(","))
+    value.rowData.map((row) => row.join(',')),
   );
 
   const inputFieldClassNameValue =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500';
 
   const fieldLabelClassNameValue =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+    'block mb-2 text-sm font-medium text-gray-900 ';
 
   const handleSectionTitleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setValue((prev) => ({
       ...prev,
@@ -34,11 +34,11 @@ export const QualificationsSectionForm: React.FC<
   };
 
   const handleTableColumnsStringChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const columnsText: string | undefined = event.target.value;
     setColumns(columnsText);
-    const columns: string[] | undefined = columnsText?.split(",");
+    const columns: string[] | undefined = columnsText?.split(',');
     if (columns) {
       setValue((prev) => ({
         ...prev,
@@ -52,14 +52,14 @@ export const QualificationsSectionForm: React.FC<
 
   const handleRowValueChange = (
     index: number,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRowWiseData((prev) => {
       let updatedRows = [...prev];
       updatedRows[index] = event.target.value;
       setValue((prev) => {
         let updatedRowData = { ...prev };
-        const rowValue = updatedRows[index].split(",");
+        const rowValue = updatedRows[index].split(',');
         updatedRowData.qualificationsSection.rowData[index] = rowValue;
         return updatedRowData;
       });
@@ -73,7 +73,7 @@ export const QualificationsSectionForm: React.FC<
 
   const handleAddDataRow = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    setRowWiseData((prev) => [...prev, ""]);
+    setRowWiseData((prev) => [...prev, '']);
     setValue((prev) => ({
       ...prev,
       qualificationsSection: {
@@ -91,7 +91,7 @@ export const QualificationsSectionForm: React.FC<
       qualificationsSection: {
         ...prev.qualificationsSection,
         rowData: prev.qualificationsSection.rowData.filter(
-          (_, rowIndex) => rowIndex !== index
+          (_, rowIndex) => rowIndex !== index,
         ),
       },
     }));

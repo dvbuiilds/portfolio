@@ -10,11 +10,19 @@ interface SearchBoxPropsType {
 }
 
 export const SearchBox: React.FC<SearchBoxPropsType> = (props) => {
-  const { isLoading, onEnterPress, onSearchValueChange, onSubmit, searchValue, setSearchValue } =
-    props;
+  const {
+    isLoading,
+    onEnterPress,
+    onSearchValueChange,
+    onSubmit,
+    searchValue,
+    setSearchValue,
+  } = props;
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const onSearchValueChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSearchValueChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     if (errorMessage.length) {
       setErrorMessage('');
     }
@@ -46,7 +54,7 @@ export const SearchBox: React.FC<SearchBoxPropsType> = (props) => {
       <input
         type="text"
         id="link"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-[0.25rem] focus:ring-blue-500 focus:border-blue-500 block w-full p-3 pr-[140px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-[0.25rem] focus:ring-blue-500 focus:border-blue-500 block w-full p-3 pr-[140px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="https://www.youtube.com/v=?xxx..."
         onKeyDown={onEnterPressSubmitHandler}
         value={searchValue}
@@ -61,7 +69,9 @@ export const SearchBox: React.FC<SearchBoxPropsType> = (props) => {
       >
         Download
       </button>
-      {errorMessage ? <p className="text-sm text-red-600 mt-1">{errorMessage}</p> : null}
+      {errorMessage ? (
+        <p className="text-sm text-red-600 mt-1">{errorMessage}</p>
+      ) : null}
     </div>
   );
 };

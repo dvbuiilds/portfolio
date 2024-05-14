@@ -10,7 +10,7 @@ interface DownloadOptionPropsType {
 export const DownloadOption: React.FC<DownloadOptionPropsType> = (props) => {
   const { format, qualityLabel, contentSize, url } = props;
   return (
-    <div className="flex flex-row items-center justify-between border border-gray-300 rounded w-[25rem] dark:text-white pl-2">
+    <div className="flex flex-row items-center justify-between border border-gray-300 rounded w-[25rem]  pl-2">
       {`.${format} | ${qualityLabel} ${contentSize}`}
       <a
         href={url}

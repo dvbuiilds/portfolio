@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface SocialHandle {
   handleName: string;
   profileLink: string;
 }
 
-interface ContactPropsType extends React.ComponentProps<"p"> {
+interface ContactPropsType extends React.ComponentProps<'p'> {
   phoneNumber?: string;
   email?: string;
   socialHandles?: Array<SocialHandle>;
@@ -16,15 +16,15 @@ export const Contact: React.FC<ContactPropsType> = (props) => {
   const { phoneNumber, email, socialHandles, description } = props;
   return (
     <p>
-      <span>{phoneNumber ? ` ${phoneNumber} | ` : ""}</span>
+      <span>{phoneNumber ? ` ${phoneNumber} | ` : ''}</span>
       <span>
         {email ? (
           <>
             <a href={`mailto: ${email}`}>{email}</a>
-            {" | "}
+            {' | '}
           </>
         ) : (
-          ""
+          ''
         )}
       </span>
       <span>
@@ -34,17 +34,17 @@ export const Contact: React.FC<ContactPropsType> = (props) => {
               <span key={index}>
                 <a
                   href={profileLink}
-                  className="underline text-black dark:text-white font-medium"
+                  className="underline text-black  font-medium"
                   target="_blank"
                 >
                   {handleName}
                 </a>
-                {`${index === socialHandles.length - 1 ? "" : " | "}`}
+                {`${index === socialHandles.length - 1 ? '' : ' | '}`}
               </span>
             ))}
           </span>
         ) : (
-          ""
+          ''
         )}
       </span>
       {description ? <span>{description}</span> : null}

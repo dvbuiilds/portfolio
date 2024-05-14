@@ -1,24 +1,24 @@
-import React from "react";
-import { FieldValueProps } from "./types";
-import { ProjectData } from "../types";
-import { motion } from "framer-motion";
-import { BsXCircleFill } from "react-icons/bs";
+import React from 'react';
+import { FieldValueProps } from './types';
+import { ProjectData } from '../types';
+import { motion } from 'framer-motion';
+import { BsXCircleFill } from 'react-icons/bs';
 
 interface ProjectsSectionFormPropsType extends FieldValueProps<ProjectData> {}
 
 export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
-  props
+  props,
 ) => {
   const { id, value, setValue } = props;
 
   const inputFieldClassNameValue =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500';
 
   const fieldLabelClassNameValue =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+    'block mb-2 text-sm font-medium text-gray-900 ';
 
   const handleSectionTitleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setValue((prev) => ({
       ...prev,
@@ -31,7 +31,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
 
   const handleProjectTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    projectIndex: number
+    projectIndex: number,
   ) => {
     setValue((prev) => {
       const newProjects = [...prev.projectsSection.projects];
@@ -48,7 +48,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
 
   const handleProjectLinkDetailsChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    projectIndex: number
+    projectIndex: number,
   ) => {
     setValue((prev) => {
       const newProjects = [...prev.projectsSection.projects];
@@ -68,7 +68,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
   const handleProjectDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     projectIndex: number,
-    descriptionIndex: number
+    descriptionIndex: number,
   ) => {
     setValue((prev) => {
       let updatedProjectsData = [...prev.projectsSection.projects];
@@ -89,7 +89,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
       const newProjectData = [...prevValue.projectsSection.projects];
       newProjectData[projectIndex] = {
         ...newProjectData[projectIndex],
-        description: [...newProjectData[projectIndex].description, ""],
+        description: [...newProjectData[projectIndex].description, ''],
       };
       return {
         ...prevValue,
@@ -103,7 +103,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
 
   const handleDeleteProjectDescription = (
     projectIndex: number,
-    descIndex: number
+    descIndex: number,
   ) => {
     if (value.projects[projectIndex].description.length === 1) return;
     setValue((prev) => {
@@ -112,7 +112,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
       updatedProjectsData[projectIndex] = {
         ...updatedProjectsData[projectIndex],
         description: updatedProjectsData[projectIndex].description.filter(
-          (_, index) => index !== descIndex
+          (_, index) => index !== descIndex,
         ),
       };
 
@@ -135,9 +135,9 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
         projects: [
           ...prev.projectsSection.projects,
           {
-            projectTitle: "",
-            projectLink: { label: "", link: "" },
-            description: [""],
+            projectTitle: '',
+            projectLink: { label: '', link: '' },
+            description: [''],
           },
         ],
       },
@@ -149,7 +149,7 @@ export const ProjectsSectionForm: React.FC<ProjectsSectionFormPropsType> = (
     setValue((prev) => {
       let updatedProjectsData = [...prev.projectsSection.projects];
       updatedProjectsData = updatedProjectsData.filter(
-        (_com, index) => index !== projectIndex
+        (_com, index) => index !== projectIndex,
       );
       return {
         ...prev,
