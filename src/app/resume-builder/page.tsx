@@ -1,6 +1,5 @@
-'use client';
-
 import { Title } from 'downloader/components/common';
+import { ResumeBuilderHome } from 'downloader/components/resume-builder-v2/ResumeBuilderHome';
 import { Resume } from 'downloader/components/resume-builder/Resume';
 import { ResumeBuilder } from 'downloader/components/resume-builder/ResumeBuilder';
 
@@ -10,8 +9,8 @@ export default function Home() {
       <div>(AdBanner here)</div>
       <div className="flex flex-col justify-center items-center w-full">
         <Title>Resume Builder</Title>
-        <ResumeBuilder />
-        {/* <Resume /> */}
+        {/* <ResumeBuilder /> */}
+        <ResumeBuilderHome />
       </div>
       <div>(AdBanner here)</div>
     </div>
