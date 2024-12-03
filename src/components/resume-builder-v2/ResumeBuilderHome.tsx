@@ -5,12 +5,15 @@ import React from 'react';
 import { ResumeThemeProvider } from './context/ResumeThemeContext';
 import { Resume } from './Resume';
 import { ThemeChangingNavbar } from './ThemeChangingNavbar';
+import { ResumeDataProvider } from './context/ResumeDataContext';
 
 export const ResumeBuilderHome = () => {
   return (
     <ResumeThemeProvider>
       <ThemeChangingNavbar />
-      <Resume />
+      <ResumeDataProvider>
+        <Resume />
+      </ResumeDataProvider>
     </ResumeThemeProvider>
   );
 };
