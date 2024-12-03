@@ -1,7 +1,7 @@
 import React from 'react';
 
 // HOOKS
-import { useResumeTheme } from './hooks/use-resume-theme';
+import { useResumeTheme } from './context/ResumeThemeContext';
 
 // TYPES
 import type { ThemeColorKeys } from './types/theme';
