@@ -5,14 +5,8 @@ import { ResumeBuilder } from 'downloader/components/resume-builder/ResumeBuilde
 
 export default function Home() {
   return (
-    <div className="flex flex-row max-md:flex-col justify-center items-center gap-1 max-w-screen-xl mx-auto ">
-      <div>(AdBanner here)</div>
-      <div className="flex flex-col justify-center items-center w-full">
-        <Title>Resume Builder</Title>
-        {/* <ResumeBuilder /> */}
-        <ResumeBuilderHome />
-      </div>
-      <div>(AdBanner here)</div>
+    <div className="flex flex-col max-md:flex-col justify-center items-center gap-1 max-w-screen-xl mx-auto ">
+      <ResumeBuilderHome />
     </div>
   );
 }
