@@ -4,6 +4,7 @@ import { Montserrat } from 'next/font/google';
 // COMPONENTS
 import { Title } from './components/Title';
 import { SocialHandles } from './components/SocialHandles';
+import { EditableWrapper } from './components/EditableWrapper';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -18,9 +19,13 @@ export const Resume = () => {
   return (
     <div className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2`}>
       {/** Title */}
-      <Title />
+      <EditableWrapper id={'title'}>
+        <Title />
+      </EditableWrapper>
       {/** Social Handles */}
-      <SocialHandles />
+      <EditableWrapper id={'socialHandles'}>
+        <SocialHandles />
+      </EditableWrapper>
     </div>
   );
 };
