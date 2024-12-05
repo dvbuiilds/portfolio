@@ -6,6 +6,7 @@ interface LayoutContextType {
   displayMode: DisplayMode;
   activeSection: ActiveSectionName;
   toggleDisplayMode: (_: ActiveSectionName) => void;
+  updateActiveSection: React.Dispatch<React.SetStateAction<ActiveSectionName>>;
 }
 
 const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
@@ -14,11 +15,11 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('preview');
-  const [activeSection, setActiveSection] = useState<ActiveSectionName>('');
+  const [activeSection, updateActiveSection] = useState<ActiveSectionName>('');
 
   const toggleDisplayMode = (sectionName: ActiveSectionName) => {
     setDisplayMode((prevMode) => (prevMode === 'edit' ? 'preview' : 'edit'));
-    setActiveSection(sectionName);
+    updateActiveSection(sectionName);
   };
 
   return (
@@ -27,6 +28,7 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
         displayMode,
         activeSection,
         toggleDisplayMode,
+        updateActiveSection,
       }}
     >
       {children}
