@@ -9,6 +9,7 @@ import { LayoutProvider, useLayout } from './context/LayoutContext';
 import { ResumeThemeProvider } from './context/ResumeThemeContext';
 import { Resume } from './Resume';
 import { ThemeChangingNavbar } from './ThemeChangingNavbar';
+import { EditPanel } from './components/EditPanel';
 
 // This Component is an HOC for ResumeBuilder so that the later can access LayoutContext.
 export const ResumeBuilderHome = () => {
@@ -28,18 +29,22 @@ export const ResumeBuilder: React.FC = () => {
     [displayMode],
   );
   const renderEditPanel = useCallback(() => {
-    return displayMode === 'edit' ? <div>Edit Panel Here!</div> : null;
+    return displayMode === 'edit' ? <EditPanel /> : null;
   }, [displayMode]);
 
   return (
-    <div className="flex flex-row w-full items-center justify-center">
-      <div className={`flex flex-col ${resumeWidthClassName} items-center`}>
-        <ThemeChangingNavbar />
-        <ResumeDataProvider>
-          <Resume />
-        </ResumeDataProvider>
-      </div>
-      {renderEditPanel()}
-    </div>
+    <>
+      <ThemeChangingNavbar />
+      <ResumeDataProvider>
+        <div className="flex flex-row w-full items-start justify-center gap-2 px-2 h-full">
+          <div
+            className={`flex flex-col ${resumeWidthClassName} items-center bg-red-50`}
+          >
+            <Resume />
+          </div>
+          {renderEditPanel()}
+        </div>
+      </ResumeDataProvider>
+    </>
   );
 };
