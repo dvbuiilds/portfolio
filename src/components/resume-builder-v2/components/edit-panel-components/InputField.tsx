@@ -8,6 +8,7 @@ export const InputField: React.FC<InputFieldProps> = (props) => {
       onChange={props.onChange}
       onBlur={props.onBlur}
       className="w-full rounded-md text-xs p-1 font-light border border-gray-300"
+      {...props}
     />
   );
 };
