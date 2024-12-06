@@ -8,12 +8,11 @@ import { AccordionContainer } from './AccordionContainer';
 
 // TYPES
 import { ActiveSectionName } from '../types/layout';
-import { InputField } from './InputField';
-import { useResumeData } from '../context/ResumeDataContext';
+import { SocialHandlesEditBox } from './edit-panel-components/SocialHandlesEditBox';
+import { TitleEditBox } from './edit-panel-components/TitleEditBox';
 
 export const EditPanel: React.FC = () => {
   const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
-  const { title, updateTitle } = useResumeData();
 
   const onTabClick = (sectionName: ActiveSectionName) => {
     if (activeSection === sectionName) {
@@ -35,20 +34,21 @@ export const EditPanel: React.FC = () => {
       </button>
       {/** All children here! */}
       <p className="mb-2">Edit Panel</p>
+      {/** Title */}
       <AccordionContainer
         title={'Title'}
         isOpen={activeSection === 'title'}
         onToggle={() => onTabClick('title')}
       >
-        <InputField
-          value={title}
-          onChange={(event) => updateTitle(event.target.value)}
-          onBlur={(event) => {
-            if (event.target.value === '') {
-              updateTitle('Enter Your Name');
-            }
-          }}
-        />
+        <TitleEditBox />
+      </AccordionContainer>
+      {/** Social Handles */}
+      <AccordionContainer
+        title={'Social Handles'}
+        isOpen={activeSection === 'socialHandles'}
+        onToggle={() => onTabClick('socialHandles')}
+      >
+        <SocialHandlesEditBox />
       </AccordionContainer>
     </div>
   );
