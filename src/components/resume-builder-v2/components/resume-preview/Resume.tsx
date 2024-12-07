@@ -5,6 +5,7 @@ import { Montserrat } from 'next/font/google';
 import { Title } from './Title';
 import { SocialHandles } from './SocialHandles';
 import { EditableWrapper } from '../wrappers/EditableWrapper';
+import { WorkExperience } from './WorkExperience';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -18,7 +19,7 @@ const A4_SHEET_CONFIG = {
 export const Resume = () => {
   return (
     <div
-      className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2 p-2`}
+      className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2 p-2 flex flex-col`}
     >
       {/** Title */}
       <EditableWrapper id={'title'}>
@@ -27,6 +28,10 @@ export const Resume = () => {
       {/** Social Handles */}
       <EditableWrapper id={'socialHandles'}>
         <SocialHandles />
+      </EditableWrapper>
+      {/** Work Experience */}
+      <EditableWrapper id={'workExperience'}>
+        <WorkExperience />
       </EditableWrapper>
     </div>
   );
