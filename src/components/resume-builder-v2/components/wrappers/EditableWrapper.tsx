@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlineEdit } from 'react-icons/md';
-import { ActiveSectionName } from '../types/layout';
-import { useLayout } from '../context/LayoutContext';
+import { ActiveSectionName } from '../../types/layout';
+import { useLayout } from '../../context/LayoutContext';
 
 export const EditableWrapper: React.FC<{
   id: ActiveSectionName;

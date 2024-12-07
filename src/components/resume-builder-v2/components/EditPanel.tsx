@@ -4,7 +4,7 @@ import React from 'react';
 import { useLayout } from '../context/LayoutContext';
 
 // COMPONENTS
-import { AccordionContainer } from './AccordionContainer';
+import { AccordionContainer } from './wrappers/AccordionContainer';
 
 // TYPES
 import { ActiveSectionName } from '../types/layout';

@@ -13,7 +13,7 @@ import { useResumeData } from '../../context/ResumeDataContext';
 
 // COMPONENTS
 import { InputField } from './InputField';
-import { DraggableWrapper } from '../DraggableWrapper';
+import { DraggableWrapper } from '../wrappers/DraggableWrapper';
 
 // TYPES
 import type { SocialHandle } from '../../types/resume-data';
