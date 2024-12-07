@@ -54,8 +54,8 @@ export const SocialHandlesEditBox: React.FC = () => {
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {socialHandles.map((socialHandle, index) => (
               <Draggable
-                key={socialHandle.label}
-                draggableId={socialHandle.label}
+                key={`socialHandeLabel_${index}`}
+                draggableId={`socialHandeLabel_${index}`}
                 index={index}
               >
                 {(provided) => (
@@ -63,8 +63,9 @@ export const SocialHandlesEditBox: React.FC = () => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
+                    className=""
                   >
-                    <DraggableWrapper key={`socialHandle_${index}`}>
+                    <DraggableWrapper>
                       <InputField
                         value={socialHandle.label}
                         name={'label'}
