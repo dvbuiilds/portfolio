@@ -1,8 +1,8 @@
 import React from 'react';
 
 // HOOKS
-import { useResumeData } from '../context/ResumeDataContext';
-import { useResumeTheme } from '../context/ResumeThemeContext';
+import { useResumeData } from '../../context/ResumeDataContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
 
 export const Title: React.FC = () => {
   const { title } = useResumeData();

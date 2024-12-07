@@ -1,10 +1,10 @@
 import React from 'react';
 
 // HOOKS
-import { useResumeData } from '../context/ResumeDataContext';
+import { useResumeData } from '../../context/ResumeDataContext';
 
 // TYPES
-import type { SocialHandle } from '../types/resume-data';
+import type { SocialHandle } from '../../types/resume-data';
 
 export const SocialHandles: React.FC = () => {
   const { socialHandles } = useResumeData();

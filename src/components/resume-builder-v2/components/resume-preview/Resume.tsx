@@ -2,9 +2,9 @@ import React from 'react';
 import { Montserrat } from 'next/font/google';
 
 // COMPONENTS
-import { Title } from './components/Title';
-import { SocialHandles } from './components/SocialHandles';
-import { EditableWrapper } from './components/wrappers/EditableWrapper';
+import { Title } from './Title';
+import { SocialHandles } from './SocialHandles';
+import { EditableWrapper } from '../wrappers/EditableWrapper';
 
 const montserrat = Montserrat({
   subsets: ['latin'],

@@ -7,9 +7,9 @@ import { LayoutProvider, useLayout } from './context/LayoutContext';
 
 // COMPONENTS
 import { ResumeThemeProvider } from './context/ResumeThemeContext';
-import { Resume } from './Resume';
+import { Resume } from './components/resume-preview/Resume';
 import { ThemeChangingNavbar } from './ThemeChangingNavbar';
-import { EditPanel } from './components/EditPanel';
+import { EditPanel } from './components/edit-panel/EditPanel';
 
 // This Component is an HOC for ResumeBuilder so that the later can access LayoutContext.
 export const ResumeBuilderHome = () => {
