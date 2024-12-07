@@ -1,15 +1,15 @@
 import React from 'react';
 
 // HOOKS
-import { useLayout } from '../context/LayoutContext';
+import { useLayout } from '../../context/LayoutContext';
 
 // COMPONENTS
-import { AccordionContainer } from './wrappers/AccordionContainer';
+import { AccordionContainer } from '../wrappers/AccordionContainer';
 
 // TYPES
-import { ActiveSectionName } from '../types/layout';
-import { SocialHandlesEditBox } from './edit-panel-components/SocialHandlesEditBox';
-import { TitleEditBox } from './edit-panel-components/TitleEditBox';
+import { ActiveSectionName } from '../../types/layout';
+import { SocialHandlesEditBox } from './SocialHandlesEditBox';
+import { TitleEditBox } from './TitleEditBox';
 
 export const EditPanel: React.FC = () => {
   const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
