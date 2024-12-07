@@ -37,9 +37,7 @@ export const ResumeBuilder: React.FC = () => {
       <ThemeChangingNavbar />
       <ResumeDataProvider>
         <div className="flex flex-row w-full items-start justify-center gap-2 px-2 h-full">
-          <div
-            className={`flex flex-col ${resumeWidthClassName} items-center bg-red-50`}
-          >
+          <div className={`flex flex-col ${resumeWidthClassName} items-center`}>
             <Resume />
           </div>
           {renderEditPanel()}
