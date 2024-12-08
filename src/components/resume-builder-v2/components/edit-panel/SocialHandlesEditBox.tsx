@@ -14,6 +14,7 @@ import { useResumeData } from '../../context/ResumeDataContext';
 // COMPONENTS
 import { InputField } from './InputField';
 import { DraggableWrapper } from '../wrappers/DraggableWrapper';
+import { BlueButton, ButtonWithCrossIcon } from './EditPanelComponents';
 
 // TYPES
 import type { SocialHandle } from '../../types/resume-data';
@@ -108,12 +109,7 @@ export const SocialHandlesEditBox: React.FC = () => {
         )}
       </Droppable>
       {/** Add Social Handle Button. Can be kept outside of the context wrapper, but just to save extra node, i kept it here. */}
-      <button
-        onClick={addNewSocialHandle}
-        className="px-4 py-2 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
-      >
-        Add Social Handle
-      </button>
+      <BlueButton label="Add Social Handle" onClick={addNewSocialHandle} />
     </DragDropContext>
   );
 };
@@ -138,15 +134,10 @@ const SocialHandleEditBox: React.FC<{
     <DraggableWrapper>
       <div className="flex flex-row justify-between items-center relative">
         <p className="text-sm">Social Handle #{index}</p>
-        <button
+        <ButtonWithCrossIcon
           onClick={() => deleteSocialHandle(index)}
-          className="top-0 right-1 text-gray-600 hover:text-gray-800 disabled:text-gray-300 disabled:cursor-not-allowed	"
-          aria-label="Close"
           disabled={!canDeleteSocialHandles}
-        >
-          {/* Close icon */}
-          &times;
-        </button>
+        />
       </div>
       <div className="flex flex-row gap-2 pr-2 items-center">
         <p className="text-xs">Label</p>
