@@ -75,46 +75,46 @@ export const SocialHandlesEditBox: React.FC = () => {
   };
 
   return (
-    <>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list">
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {socialHandles.map((socialHandle, index) => (
-                <Draggable
-                  key={`socialHandeLabel_${index}`}
-                  draggableId={`socialHandeLabel_${index}`}
-                  index={index}
-                >
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <SocialHandleEditBox
-                        index={index}
-                        canDeleteSocialHandles={canDeleteSocialHandles}
-                        socialHandle={socialHandle}
-                        onChangeHandler={onChangeHandler}
-                        deleteSocialHandle={deleteSocialHandle}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="list">
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {socialHandles.map((socialHandle, index) => (
+              <Draggable
+                key={`socialHandeLabel_${index}`}
+                draggableId={`socialHandeLabel_${index}`}
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    className="mb-1"
+                  >
+                    <SocialHandleEditBox
+                      index={index}
+                      canDeleteSocialHandles={canDeleteSocialHandles}
+                      socialHandle={socialHandle}
+                      onChangeHandler={onChangeHandler}
+                      deleteSocialHandle={deleteSocialHandle}
+                    />
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+      {/** Add Social Handle Button. Can be kept outside of the context wrapper, but just to save extra node, i kept it here. */}
       <button
         onClick={addNewSocialHandle}
-        className="float-right mt-4 px-4 py-2 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+        className="px-4 py-2 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
       >
         Add Social Handle
       </button>
-    </>
+    </DragDropContext>
   );
 };
 
