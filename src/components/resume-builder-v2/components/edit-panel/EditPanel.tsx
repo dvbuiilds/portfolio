@@ -5,11 +5,13 @@ import { useLayout } from '../../context/LayoutContext';
 
 // COMPONENTS
 import { AccordionContainer } from '../wrappers/AccordionContainer';
+import { ButtonWithCrossIcon } from './EditPanelComponents';
+import { SocialHandlesEditBox } from './SocialHandlesEditBox';
+import { TitleEditBox } from './TitleEditBox';
+import { WorkExperienceEdit } from './WorkExperienceEditBox';
 
 // TYPES
 import { ActiveSectionName } from '../../types/layout';
-import { SocialHandlesEditBox } from './SocialHandlesEditBox';
-import { TitleEditBox } from './TitleEditBox';
 
 export const EditPanel: React.FC = () => {
   const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
@@ -24,16 +26,10 @@ export const EditPanel: React.FC = () => {
 
   return (
     <div className="w-1/3 h-full relative p-2 border border-gray-300 rounded-md bg-blue-50 border">
-      <button
-        onClick={() => toggleDisplayMode('')}
-        className="absolute top-0 right-1 text-gray-600 hover:text-gray-800"
-        aria-label="Close"
-      >
-        {/* Close icon */}
-        &times;
-      </button>
-      {/** All children here! */}
-      <p className="mb-2">Edit Panel</p>
+      <div className="flex flex-row items-center justify-between mb-2">
+        <p className="font-medium">Edit Panel</p>
+        <ButtonWithCrossIcon onClick={() => toggleDisplayMode('')} />
+      </div>
       {/** Title */}
       <AccordionContainer
         title={'Title'}
@@ -49,6 +45,14 @@ export const EditPanel: React.FC = () => {
         onToggle={() => onTabClick('socialHandles')}
       >
         <SocialHandlesEditBox />
+      </AccordionContainer>
+      {/** Work Experience */}
+      <AccordionContainer
+        title={'Work Experience'}
+        isOpen={activeSection === 'workExperience'}
+        onToggle={() => onTabClick('workExperience')}
+      >
+        <WorkExperienceEdit />
       </AccordionContainer>
     </div>
   );
