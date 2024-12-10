@@ -15,3 +15,16 @@ export interface WorkExperience {
   title: string;
   experience: Experience[];
 }
+
+export interface Project {
+  organizationName: string;
+  projectTitle: string;
+  startDate: string;
+  endDate: string;
+  description: string[];
+}
+
+export interface Projects {
+  title: string;
+  projects: Project[];
+}
