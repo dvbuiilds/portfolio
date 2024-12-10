@@ -12,7 +12,7 @@ import {
   ButtonWithPlusIcon,
 } from './EditPanelComponents';
 
-export const WorkExperienceEdit: React.FC = () => {
+export const WorkExperienceEditBox: React.FC = () => {
   const { workExperience, updateWorkExperience } = useResumeData();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,9 +24,21 @@ export const WorkExperienceEdit: React.FC = () => {
     field: keyof Experience,
     value: string,
   ) => {
-    const updatedExperience = [...workExperience.experience];
-    updatedExperience[index] = { ...updatedExperience[index], [field]: value };
-    updateWorkExperience({ ...workExperience, experience: updatedExperience });
+    updateWorkExperience((prev) => {
+      const selectedExperienceItem = prev.experience[index];
+      const updatedExperienceItem = {
+        ...selectedExperienceItem,
+        [field]: value,
+      };
+      const updateExperience = prev.experience.map((prevExp, expIndex) => {
+        if (expIndex === index) {
+          return updatedExperienceItem;
+        }
+        return prevExp;
+      });
+      return { ...prev, experience: updateExperience };
+    });
+    return;
   };
 
   const handleDescriptionChange = (
@@ -34,14 +46,17 @@ export const WorkExperienceEdit: React.FC = () => {
     descIndex: number,
     value: string,
   ) => {
-    const updatedExperience = [...workExperience.experience];
-    const updatedDescription = [...updatedExperience[expIndex].description];
-    updatedDescription[descIndex] = value;
-    updatedExperience[expIndex] = {
-      ...updatedExperience[expIndex],
-      description: updatedDescription,
-    };
-    updateWorkExperience({ ...workExperience, experience: updatedExperience });
+    updateWorkExperience((prev) => {
+      const selectedExperience = { ...prev.experience[expIndex] };
+      selectedExperience.description[descIndex] = value;
+      const updatedExperience = prev.experience.map((prevExp, index) => {
+        if (index === expIndex) {
+          return selectedExperience;
+        }
+        return prevExp;
+      });
+      return { ...prev, experience: updatedExperience };
+    });
   };
 
   const addNewExperience = () => {
@@ -63,28 +78,49 @@ export const WorkExperienceEdit: React.FC = () => {
       alert('Minimum 1 Work Experience is needed!');
       return;
     }
-    const updatedExperience = workExperience.experience.filter(
-      (_, i) => i !== index,
-    );
-    updateWorkExperience({ ...workExperience, experience: updatedExperience });
+
+    updateWorkExperience((prev) => {
+      const updatedExperience = prev.experience.filter((_, i) => i !== index);
+      return { ...prev, experience: updatedExperience };
+    });
   };
 
   const addNewDescription = (expIndex: number) => {
-    const updatedExperience = [...workExperience.experience];
-    updatedExperience[expIndex].description.push('');
-    updateWorkExperience({ ...workExperience, experience: updatedExperience });
+    updateWorkExperience((prev) => {
+      const updatedExperienceArray = prev.experience.map((prevExp, index) => {
+        if (index === expIndex) {
+          return {
+            ...prevExp,
+            description: [...prevExp.description, ''],
+          };
+        }
+        return prevExp;
+      });
+      return { ...prev, experience: updatedExperienceArray };
+    });
   };
 
   const deleteDescription = (expIndex: number, descIndex: number) => {
     if (workExperience.experience[expIndex].description.length === 1) {
-      alert('Atleast one description is needed for company.');
+      alert('Atleast one description is needed for experience.');
       return;
     }
-    const updatedExperience = [...workExperience.experience];
-    updatedExperience[expIndex].description = updatedExperience[
-      expIndex
-    ].description.filter((_, i) => i !== descIndex);
-    updateWorkExperience({ ...workExperience, experience: updatedExperience });
+    updateWorkExperience((prev) => {
+      const selectedExperience = prev.experience[expIndex];
+      const updatedDescriptions = selectedExperience.description.filter(
+        (_, index) => descIndex !== index,
+      );
+      const updatedExperienceArray = prev.experience.map((prevExp, index) => {
+        if (expIndex === index) {
+          return {
+            ...prevExp,
+            description: updatedDescriptions,
+          };
+        }
+        return prevExp;
+      });
+      return { ...prev, experience: updatedExperienceArray };
+    });
   };
 
   return (
