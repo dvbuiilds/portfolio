@@ -1,8 +1,12 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import type { SocialHandle, WorkExperience } from '../types/resume-data';
+import type {
+  Projects,
+  SocialHandle,
+  WorkExperience,
+} from '../types/resume-data';
 
-interface ResumeDataContextType {
+export interface ResumeDataContextType {
   title: string;
   updateTitle: React.Dispatch<React.SetStateAction<string>>;
   socialHandles: Array<SocialHandle>;
@@ -11,6 +15,8 @@ interface ResumeDataContextType {
   >;
   workExperience: WorkExperience;
   updateWorkExperience: React.Dispatch<React.SetStateAction<WorkExperience>>;
+  projects: Projects;
+  updateProjects: React.Dispatch<React.SetStateAction<Projects>>;
 }
 
 const ResumeDataContext = createContext<ResumeDataContextType | undefined>(
@@ -21,6 +27,7 @@ const initialResumeData: {
   title: string;
   socialHandles: Array<SocialHandle>;
   workExperience: WorkExperience;
+  projects: Projects;
 } = {
   title: 'Enter Your Name',
   socialHandles: [
@@ -35,6 +42,18 @@ const initialResumeData: {
         jobTitle: 'Software Engineer',
         startDate: 'June 2023',
         endDate: 'Present',
+        description: ['Worked on YouTube Ads Scaling.'],
+      },
+    ],
+  },
+  projects: {
+    title: 'PROJECTS',
+    projects: [
+      {
+        organizationName: 'Google Cloud.',
+        projectTitle: 'To do App',
+        startDate: 'June 2022',
+        endDate: 'Aug 2022',
         description: ['Worked on YouTube Ads Scaling.'],
       },
     ],
@@ -55,6 +74,9 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
   const [workExperience, updateWorkExperience] = useState<WorkExperience>(
     initialResumeData.workExperience,
   );
+  const [projects, updateProjects] = useState<Projects>(
+    initialResumeData.projects,
+  );
 
   return (
     <ResumeDataContext.Provider
@@ -65,6 +87,8 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
         updateSocialHandles,
         workExperience,
         updateWorkExperience,
+        projects,
+        updateProjects,
       }}
     >
       {children}
