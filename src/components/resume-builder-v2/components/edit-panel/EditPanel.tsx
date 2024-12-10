@@ -8,10 +8,11 @@ import { AccordionContainer } from '../wrappers/AccordionContainer';
 import { ButtonWithCrossIcon } from './EditPanelComponents';
 import { SocialHandlesEditBox } from './SocialHandlesEditBox';
 import { TitleEditBox } from './TitleEditBox';
-import { WorkExperienceEdit } from './WorkExperienceEditBox';
+import { WorkExperienceEditBox } from './WorkExperienceEditBox';
 
 // TYPES
 import { ActiveSectionName } from '../../types/layout';
+import { ProjectsEditBox } from './ProjectsEditBox';
 
 export const EditPanel: React.FC = () => {
   const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
@@ -52,7 +53,15 @@ export const EditPanel: React.FC = () => {
         isOpen={activeSection === 'workExperience'}
         onToggle={() => onTabClick('workExperience')}
       >
-        <WorkExperienceEdit />
+        <WorkExperienceEditBox />
+      </AccordionContainer>
+      {/** Projects */}
+      <AccordionContainer
+        title={'Projects'}
+        isOpen={activeSection === 'projects'}
+        onToggle={() => onTabClick('projects')}
+      >
+        <ProjectsEditBox />
       </AccordionContainer>
     </div>
   );
