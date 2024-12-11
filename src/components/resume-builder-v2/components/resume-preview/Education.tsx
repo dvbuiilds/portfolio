@@ -26,18 +26,18 @@ export const Education: React.FC = () => {
 
 const Course: React.FC<{ index: number; data: Course }> = ({ index, data }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-1">
       {/* Row for institution name and dates */}
       <div className="flex justify-between mt-1">
         <div className="text-xs font-medium">{data.institutionName}</div>
-        <div className="text-xs">
+        <div className="text-xs font-medium">
           {data.startDate} — {data.endDate}
         </div>
       </div>
       {/* Row for courseName and scoreEarned */}
       <div className="flex justify-between">
-        <div className="font-medium text-xs">{data.courseName}</div>
-        <div className="font-medium text-xs">{data.scoreEarned}</div>
+        <div className="text-xs">{data.courseName}</div>
+        <div className="text-xs">{data.scoreEarned}</div>
       </div>
       {/* Description list */}
       <ul className="list-disc pl-5 mt-1 text-xs">
