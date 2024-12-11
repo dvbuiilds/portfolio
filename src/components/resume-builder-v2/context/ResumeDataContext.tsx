@@ -1,6 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import type {
+  Activities,
   Education,
   Projects,
   SocialHandle,
@@ -20,6 +21,8 @@ export interface ResumeDataContextType {
   updateProjects: React.Dispatch<React.SetStateAction<Projects>>;
   education: Education;
   updateEducation: React.Dispatch<React.SetStateAction<Education>>;
+  activities: Activities;
+  updateActivities: React.Dispatch<React.SetStateAction<Activities>>;
 }
 
 const ResumeDataContext = createContext<ResumeDataContextType | undefined>(
@@ -32,6 +35,7 @@ const initialResumeData: {
   workExperience: WorkExperience;
   projects: Projects;
   education: Education;
+  activities: Activities;
 } = {
   title: 'Enter Your Name',
   socialHandles: [
@@ -94,6 +98,21 @@ const initialResumeData: {
       },
     ],
   },
+  activities: {
+    title: 'Extracurricular Activities',
+    activities: [
+      {
+        activityTitle: 'Student Council President',
+        institutionName: 'University of Example',
+        startDate: '2021-09-01',
+        endDate: '2022-05-31',
+        descriptions: [
+          'Led weekly meetings to address student concerns',
+          'Organized campus-wide events with over 1000 participants',
+        ],
+      },
+    ],
+  },
 };
 
 export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
@@ -116,6 +135,9 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
   const [education, updateEducation] = useState<Education>(
     initialResumeData.education,
   );
+  const [activities, updateActivities] = useState<Activities>(
+    initialResumeData.activities,
+  );
 
   return (
     <ResumeDataContext.Provider
@@ -130,6 +152,8 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
         updateProjects,
         education,
         updateEducation,
+        activities,
+        updateActivities,
       }}
     >
       {children}
