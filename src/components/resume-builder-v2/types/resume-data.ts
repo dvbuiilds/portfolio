@@ -28,3 +28,17 @@ export interface Projects {
   title: string;
   projects: Project[];
 }
+
+export interface Course {
+  courseName: string;
+  institutionName: string;
+  startDate: string;
+  endDate: string;
+  scoreEarned: string;
+  description: string;
+}
+
+export interface Education {
+  title: string;
+  courses: Course[];
+}
