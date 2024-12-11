@@ -7,6 +7,7 @@ import { SocialHandles } from './SocialHandles';
 import { EditableWrapper } from '../wrappers/EditableWrapper';
 import { WorkExperience } from './WorkExperience';
 import { Projects } from './Projects';
+import { Education } from './Education';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -37,6 +38,10 @@ export const Resume = () => {
       {/** Projects */}
       <EditableWrapper id={'projects'}>
         <Projects />
+      </EditableWrapper>
+      {/** Education */}
+      <EditableWrapper id={'education'}>
+        <Education />
       </EditableWrapper>
     </div>
   );
