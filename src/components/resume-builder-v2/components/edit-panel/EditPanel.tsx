@@ -13,6 +13,7 @@ import { WorkExperienceEditBox } from './WorkExperienceEditBox';
 // TYPES
 import { ActiveSectionName } from '../../types/layout';
 import { ProjectsEditBox } from './ProjectsEditBox';
+import { EducationEditBox } from './EducationEditBox';
 
 export const EditPanel: React.FC = () => {
   const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
@@ -62,6 +63,14 @@ export const EditPanel: React.FC = () => {
         onToggle={() => onTabClick('projects')}
       >
         <ProjectsEditBox />
+      </AccordionContainer>
+      {/** Education */}
+      <AccordionContainer
+        title={'Education'}
+        isOpen={activeSection === 'education'}
+        onToggle={() => onTabClick('education')}
+      >
+        <EducationEditBox />
       </AccordionContainer>
     </div>
   );
