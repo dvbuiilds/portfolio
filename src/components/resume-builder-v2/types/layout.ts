@@ -8,4 +8,5 @@ export type ActiveSectionName =
   | 'workExperience'
   | 'projects'
   | 'achievements'
+  | 'activities'
   | 'skills';
