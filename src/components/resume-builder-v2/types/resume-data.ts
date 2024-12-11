@@ -42,3 +42,16 @@ export interface Education {
   title: string;
   courses: Course[];
 }
+
+export interface ActivityItem {
+  activityTitle: string;
+  institutionName: string;
+  startDate: string;
+  endDate: string;
+  descriptions: string[];
+}
+
+export interface Activities {
+  title: string;
+  activities: ActivityItem[];
+}
