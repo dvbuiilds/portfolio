@@ -8,6 +8,7 @@ import { EditableWrapper } from '../wrappers/EditableWrapper';
 import { WorkExperience } from './WorkExperience';
 import { Projects } from './Projects';
 import { Education } from './Education';
+import { Activities } from './Activities';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -42,6 +43,10 @@ export const Resume = () => {
       {/** Education */}
       <EditableWrapper id={'education'}>
         <Education />
+      </EditableWrapper>
+      {/** Activities */}
+      <EditableWrapper id={'activities'}>
+        <Activities />
       </EditableWrapper>
     </div>
   );
