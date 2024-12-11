@@ -1,6 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import type {
+  Education,
   Projects,
   SocialHandle,
   WorkExperience,
@@ -17,6 +18,8 @@ export interface ResumeDataContextType {
   updateWorkExperience: React.Dispatch<React.SetStateAction<WorkExperience>>;
   projects: Projects;
   updateProjects: React.Dispatch<React.SetStateAction<Projects>>;
+  education: Education;
+  updateEducation: React.Dispatch<React.SetStateAction<Education>>;
 }
 
 const ResumeDataContext = createContext<ResumeDataContextType | undefined>(
@@ -28,6 +31,7 @@ const initialResumeData: {
   socialHandles: Array<SocialHandle>;
   workExperience: WorkExperience;
   projects: Projects;
+  education: Education;
 } = {
   title: 'Enter Your Name',
   socialHandles: [
@@ -58,6 +62,38 @@ const initialResumeData: {
       },
     ],
   },
+  education: {
+    title: 'Education',
+    courses: [
+      {
+        courseName: 'Bachelor of Science in Computer Science',
+        institutionName: 'University of Technology',
+        startDate: 'May 2019',
+        endDate: 'May 2023',
+        scoreEarned: '9.23 GPA',
+        description:
+          'Specialized in Artificial Intelligence and Data Science. Completed a capstone project on machine learning algorithms for predictive analytics.',
+      },
+      {
+        courseName: 'Intermediate PCM',
+        institutionName: 'Central High School',
+        startDate: 'Mar 2016',
+        endDate: 'Mar 2018',
+        scoreEarned: '93.4%',
+        description:
+          'Valedictorian. President of the Computer Science Club. Participated in national mathematics olympiad.',
+      },
+      {
+        courseName: 'High School',
+        institutionName: 'CodeCamp Academy',
+        startDate: 'Mar 2015',
+        endDate: 'Mar 2016',
+        scoreEarned: 'Distinction',
+        description:
+          'Intensive 10-week program covering full-stack web development. Built and deployed three web applications using React, Node.js, and MongoDB.',
+      },
+    ],
+  },
 };
 
 export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
@@ -77,6 +113,9 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
   const [projects, updateProjects] = useState<Projects>(
     initialResumeData.projects,
   );
+  const [education, updateEducation] = useState<Education>(
+    initialResumeData.education,
+  );
 
   return (
     <ResumeDataContext.Provider
@@ -89,6 +128,8 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
         updateWorkExperience,
         projects,
         updateProjects,
+        education,
+        updateEducation,
       }}
     >
       {children}
