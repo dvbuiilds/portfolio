@@ -67,7 +67,7 @@ const initialResumeData: {
     ],
   },
   education: {
-    title: 'Education',
+    title: 'EDUCATION',
     courses: [
       {
         courseName: 'Bachelor of Science in Computer Science',
@@ -99,13 +99,13 @@ const initialResumeData: {
     ],
   },
   activities: {
-    title: 'Extracurricular Activities',
+    title: 'ACTIVITIES',
     activities: [
       {
         activityTitle: 'Student Council President',
         institutionName: 'University of Example',
-        startDate: '2021-09-01',
-        endDate: '2022-05-31',
+        startDate: 'Sept 2021',
+        endDate: 'May 2022',
         descriptions: [
           'Led weekly meetings to address student concerns',
           'Organized campus-wide events with over 1000 participants',
