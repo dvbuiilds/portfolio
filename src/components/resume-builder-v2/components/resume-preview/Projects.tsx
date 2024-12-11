@@ -29,7 +29,7 @@ const Project: React.FC<{ index: number; data: Project }> = ({
   data,
 }) => {
   return (
-    <div key={index} className="mb-4">
+    <div className="mb-1">
       <div className="flex justify-between">
         <div className="font-medium text-xs">
           {data.organizationName} - {data.projectTitle}

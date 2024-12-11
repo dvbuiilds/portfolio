@@ -29,7 +29,7 @@ const Experience: React.FC<{ index: number; data: Experience }> = ({
   data,
 }) => {
   return (
-    <div key={index} className="mb-4">
+    <div className="mb-1">
       <div className="flex justify-between">
         <div className="font-medium text-xs">
           {data.companyName} - {data.jobTitle}
