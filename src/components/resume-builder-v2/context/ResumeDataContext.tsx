@@ -4,6 +4,7 @@ import type {
   Activities,
   Education,
   Projects,
+  Skills,
   SocialHandle,
   WorkExperience,
 } from '../types/resume-data';
@@ -23,6 +24,8 @@ export interface ResumeDataContextType {
   updateEducation: React.Dispatch<React.SetStateAction<Education>>;
   activities: Activities;
   updateActivities: React.Dispatch<React.SetStateAction<Activities>>;
+  skills: Skills;
+  updateSkills: React.Dispatch<React.SetStateAction<Skills>>;
 }
 
 const ResumeDataContext = createContext<ResumeDataContextType | undefined>(
@@ -36,6 +39,7 @@ const initialResumeData: {
   projects: Projects;
   education: Education;
   activities: Activities;
+  skills: Skills;
 } = {
   title: 'Enter Your Name',
   socialHandles: [
@@ -113,6 +117,24 @@ const initialResumeData: {
       },
     ],
   },
+  skills: {
+    title: 'SKILLS',
+    skillSet: [
+      {
+        title: 'Programming Languages',
+        skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'SQL'],
+      },
+      {
+        title: 'Soft Skills',
+        skills: [
+          'Team Leadership',
+          'Agile Methodologies',
+          'Technical Writing',
+          'Public Speaking',
+        ],
+      },
+    ],
+  },
 };
 
 export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
@@ -138,6 +160,7 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
   const [activities, updateActivities] = useState<Activities>(
     initialResumeData.activities,
   );
+  const [skills, updateSkills] = useState<Skills>(initialResumeData.skills);
 
   return (
     <ResumeDataContext.Provider
@@ -154,6 +177,8 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
         updateEducation,
         activities,
         updateActivities,
+        skills,
+        updateSkills,
       }}
     >
       {children}
