@@ -55,3 +55,13 @@ export interface Activities {
   title: string;
   activities: ActivityItem[];
 }
+
+export interface SkillSetItem {
+  title: string;
+  skills: string[];
+}
+
+export interface Skills {
+  title: string;
+  skillSet: SkillSetItem[];
+}
