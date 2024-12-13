@@ -1,6 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import type {
+  Achievements,
   Activities,
   Education,
   Projects,
@@ -26,6 +27,8 @@ export interface ResumeDataContextType {
   updateActivities: React.Dispatch<React.SetStateAction<Activities>>;
   skills: Skills;
   updateSkills: React.Dispatch<React.SetStateAction<Skills>>;
+  achievements: Achievements;
+  updateAchievements: React.Dispatch<React.SetStateAction<Achievements>>;
 }
 
 const ResumeDataContext = createContext<ResumeDataContextType | undefined>(
@@ -40,10 +43,11 @@ const initialResumeData: {
   education: Education;
   activities: Activities;
   skills: Skills;
+  achievements: Achievements;
 } = {
   title: 'Enter Your Name',
   socialHandles: [
-    { label: 'abc@example.com', link: 'use mailto: in the link' },
+    { label: 'abc@example.com', link: '#use mailto: in the link' },
     { label: 'LinkedIn', link: '#' },
   ],
   workExperience: {
@@ -91,15 +95,6 @@ const initialResumeData: {
         description:
           'Valedictorian. President of the Computer Science Club. Participated in national mathematics olympiad.',
       },
-      {
-        courseName: 'High School',
-        institutionName: 'CodeCamp Academy',
-        startDate: 'Mar 2015',
-        endDate: 'Mar 2016',
-        scoreEarned: 'Distinction',
-        description:
-          'Intensive 10-week program covering full-stack web development. Built and deployed three web applications using React, Node.js, and MongoDB.',
-      },
     ],
   },
   activities: {
@@ -135,6 +130,18 @@ const initialResumeData: {
       },
     ],
   },
+  achievements: {
+    title: 'ACHIEVEMENTS',
+    achievementList: [
+      {
+        awardName: 'Best Paper Award',
+        institutionName: 'International Conference on Computer Science',
+        dateAwarded: 'May 2023',
+        description:
+          "Received for the paper 'Novel Approaches in Machine Learning'",
+      },
+    ],
+  },
 };
 
 export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
@@ -161,6 +168,9 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
     initialResumeData.activities,
   );
   const [skills, updateSkills] = useState<Skills>(initialResumeData.skills);
+  const [achievements, updateAchievements] = useState<Achievements>(
+    initialResumeData.achievements,
+  );
 
   return (
     <ResumeDataContext.Provider
@@ -179,6 +189,8 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
         updateActivities,
         skills,
         updateSkills,
+        achievements,
+        updateAchievements,
       }}
     >
       {children}
