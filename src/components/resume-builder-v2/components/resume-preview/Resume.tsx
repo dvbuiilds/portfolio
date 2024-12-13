@@ -10,6 +10,7 @@ import { Projects } from './Projects';
 import { Education } from './Education';
 import { Activities } from './Activities';
 import { Skills } from './Skills';
+import { Achievements } from './Achievements';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,7 +24,7 @@ const A4_SHEET_CONFIG = {
 export const Resume = () => {
   return (
     <div
-      className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2 p-2 flex flex-col`}
+      className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2 px-2 py-4 flex flex-col`}
     >
       {/** Title */}
       <EditableWrapper id={'title'}>
@@ -52,6 +53,10 @@ export const Resume = () => {
       {/** Skills */}
       <EditableWrapper id={'skills'}>
         <Skills />
+      </EditableWrapper>
+      {/** Achievements */}
+      <EditableWrapper id={'achievements'}>
+        <Achievements />
       </EditableWrapper>
     </div>
   );
