@@ -30,7 +30,7 @@ const SkillSet: React.FC<{
   data: SkillSetItem;
 }> = ({ data }) => {
   return (
-    <div className="mb-1 text-xs">
+    <div className="text-xs">
       <span className="font-medium mr-1">{data.title}:</span>
       <span>{data.skills.join(', ')}</span>
     </div>
