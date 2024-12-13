@@ -65,3 +65,15 @@ export interface Skills {
   title: string;
   skillSet: SkillSetItem[];
 }
+
+export interface AchievementItem {
+  awardName: string;
+  institutionName: string;
+  dateAwarded: string;
+  description: string;
+}
+
+export interface Achievements {
+  title: string;
+  achievementList: AchievementItem[];
+}
