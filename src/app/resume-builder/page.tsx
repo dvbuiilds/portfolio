@@ -1,7 +1,4 @@
-import { Title } from 'downloader/components/common';
-import { ResumeBuilderHome } from 'downloader/components/resume-builder-v2/ResumeBuilderHome';
-import { Resume } from 'downloader/components/resume-builder/Resume';
-import { ResumeBuilder } from 'downloader/components/resume-builder/ResumeBuilder';
+import { ResumeBuilderHome } from 'downloader/components/resume-builder/ResumeBuilderHome';
 
 export default function Home() {
   return (
