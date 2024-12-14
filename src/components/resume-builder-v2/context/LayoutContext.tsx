@@ -1,25 +1,48 @@
 'use client';
 import React, { createContext, useState, useContext } from 'react';
-import { ActiveSectionName, DisplayMode } from '../types/layout';
+import type { ActiveSectionName, DisplayMode } from '../types/layout';
+import { SectionNameMapping } from '../config/section-name-config';
 
 interface LayoutContextType {
   displayMode: DisplayMode;
   activeSection: ActiveSectionName;
   toggleDisplayMode: (_: ActiveSectionName) => void;
   updateActiveSection: React.Dispatch<React.SetStateAction<ActiveSectionName>>;
+  sectionsOrder: Array<ActiveSectionName>;
+  updateSectionsOrder: React.Dispatch<
+    React.SetStateAction<Array<ActiveSectionName>>
+  >;
 }
 
 const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
+
+const initialSectionsOrder: ActiveSectionName[] = [
+  SectionNameMapping.TITLE,
+  SectionNameMapping.SOCIAL_HANDLES,
+  SectionNameMapping.WORK_EXPERIENCE,
+  SectionNameMapping.PROJECTS,
+  SectionNameMapping.EDUCATION,
+  SectionNameMapping.ACTIVITIES,
+  SectionNameMapping.SKILLS,
+  SectionNameMapping.ACHIEVEMENTS,
+];
 
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('preview');
   const [activeSection, updateActiveSection] = useState<ActiveSectionName>('');
+  const [sectionsOrder, updateSectionsOrder] =
+    useState<Array<ActiveSectionName>>(initialSectionsOrder);
 
   const toggleDisplayMode = (sectionName: ActiveSectionName) => {
-    setDisplayMode((prevMode) => (prevMode === 'edit' ? 'preview' : 'edit'));
-    updateActiveSection(sectionName);
+    if (sectionName === activeSection) {
+      updateActiveSection('');
+      setDisplayMode('preview');
+    } else {
+      updateActiveSection(sectionName);
+      setDisplayMode('edit');
+    }
   };
 
   return (
@@ -29,6 +52,8 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
         activeSection,
         toggleDisplayMode,
         updateActiveSection,
+        sectionsOrder,
+        updateSectionsOrder,
       }}
     >
       {children}
