@@ -10,6 +10,7 @@ import { ResumeThemeProvider } from './context/ResumeThemeContext';
 import { Resume } from './components/resume-preview/Resume';
 import { ThemeChangingNavbar } from './ThemeChangingNavbar';
 import { EditPanel } from './components/edit-panel/EditPanel';
+import { SectionSelectionCards } from './SectionSelectionCards';
 
 // This Component is an HOC for ResumeBuilder so that the later can access LayoutContext.
 export const ResumeBuilderHome = () => {
@@ -34,6 +35,7 @@ export const ResumeBuilder: React.FC = () => {
 
   return (
     <>
+      <SectionSelectionCards />
       <ThemeChangingNavbar />
       <ResumeDataProvider>
         <div className="flex flex-row w-full items-start justify-center gap-2 px-2 h-full">
