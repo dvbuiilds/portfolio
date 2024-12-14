@@ -18,8 +18,51 @@ import { ActivitiesEditBox } from './ActivitiesEditBox';
 import { SkillsEditBox } from './SkillsEditBox';
 import { AchievementsEditBox } from './AchievementsEditBox';
 
+// CONFIGS
+import {
+  SectionNameMapping,
+  SectionIdTitleMapping,
+} from '../../config/section-name-config';
+
+const renderSection = (sectionName: ActiveSectionName) => {
+  switch (sectionName) {
+    case SectionNameMapping.TITLE: {
+      return <TitleEditBox />;
+    }
+    case SectionNameMapping.SOCIAL_HANDLES: {
+      return <SocialHandlesEditBox />;
+    }
+    case SectionNameMapping.WORK_EXPERIENCE: {
+      return <WorkExperienceEditBox />;
+    }
+    case SectionNameMapping.PROJECTS: {
+      return <ProjectsEditBox />;
+    }
+    case SectionNameMapping.EDUCATION: {
+      return <EducationEditBox />;
+    }
+    case SectionNameMapping.ACTIVITIES: {
+      return <ActivitiesEditBox />;
+    }
+    case SectionNameMapping.SKILLS: {
+      return <SkillsEditBox />;
+    }
+    case SectionNameMapping.ACHIEVEMENTS: {
+      return <AchievementsEditBox />;
+    }
+    default: {
+      return;
+    }
+  }
+};
+
 export const EditPanel: React.FC = () => {
-  const { activeSection, toggleDisplayMode, updateActiveSection } = useLayout();
+  const {
+    activeSection,
+    sectionsOrder,
+    toggleDisplayMode,
+    updateActiveSection,
+  } = useLayout();
 
   const onTabClick = (sectionName: ActiveSectionName) => {
     if (activeSection === sectionName) {
@@ -29,76 +72,29 @@ export const EditPanel: React.FC = () => {
     }
   };
 
+  const renderEditSections = () =>
+    sectionsOrder.map((sectionName) => {
+      return (
+        <AccordionContainer
+          key={`${sectionName}_editBox`}
+          title={SectionIdTitleMapping[sectionName]}
+          isOpen={activeSection === sectionName}
+          onToggle={() => onTabClick(sectionName)}
+        >
+          {renderSection(sectionName)}
+        </AccordionContainer>
+      );
+    });
+
   return (
     <div className="w-1/3 h-full relative p-2 border border-gray-300 rounded-md bg-blue-50 border">
       <div className="flex flex-row items-center justify-between mb-2">
         <p className="font-medium">Edit Panel</p>
-        <ButtonWithCrossIcon onClick={() => toggleDisplayMode('')} />
+        <ButtonWithCrossIcon
+          onClick={() => toggleDisplayMode(SectionNameMapping.EMPTY)}
+        />
       </div>
-      {/** Title */}
-      <AccordionContainer
-        title={'Title'}
-        isOpen={activeSection === 'title'}
-        onToggle={() => onTabClick('title')}
-      >
-        <TitleEditBox />
-      </AccordionContainer>
-      {/** Social Handles */}
-      <AccordionContainer
-        title={'Social Handles'}
-        isOpen={activeSection === 'socialHandles'}
-        onToggle={() => onTabClick('socialHandles')}
-      >
-        <SocialHandlesEditBox />
-      </AccordionContainer>
-      {/** Work Experience */}
-      <AccordionContainer
-        title={'Work Experience'}
-        isOpen={activeSection === 'workExperience'}
-        onToggle={() => onTabClick('workExperience')}
-      >
-        <WorkExperienceEditBox />
-      </AccordionContainer>
-      {/** Projects */}
-      <AccordionContainer
-        title={'Projects'}
-        isOpen={activeSection === 'projects'}
-        onToggle={() => onTabClick('projects')}
-      >
-        <ProjectsEditBox />
-      </AccordionContainer>
-      {/** Education */}
-      <AccordionContainer
-        title={'Education'}
-        isOpen={activeSection === 'education'}
-        onToggle={() => onTabClick('education')}
-      >
-        <EducationEditBox />
-      </AccordionContainer>
-      {/** Activities */}
-      <AccordionContainer
-        title={'Activities'}
-        isOpen={activeSection === 'activities'}
-        onToggle={() => onTabClick('activities')}
-      >
-        <ActivitiesEditBox />
-      </AccordionContainer>
-      {/** Activities */}
-      <AccordionContainer
-        title={'Skills'}
-        isOpen={activeSection === 'skills'}
-        onToggle={() => onTabClick('skills')}
-      >
-        <SkillsEditBox />
-      </AccordionContainer>
-      {/** Achievements */}
-      <AccordionContainer
-        title={'Achievements'}
-        isOpen={activeSection === 'achievements'}
-        onToggle={() => onTabClick('achievements')}
-      >
-        <AchievementsEditBox />
-      </AccordionContainer>
+      {renderEditSections()}
     </div>
   );
 };
