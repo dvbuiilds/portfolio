@@ -20,34 +20,6 @@ export const InputField: React.FC<InputFieldProps> = ({
   );
 };
 
-/**
- * This interface and component were created to keep thr label and input field together, but currently i have decided to go without labels, hence this component is not being used anywhere. In future, it can be used anywhere that's why i am not removing it.
- */
-interface LabelInputFieldPairProps extends React.ComponentProps<'input'> {
-  label: string;
-}
-export const LabelInputFieldPair: React.FC<LabelInputFieldPairProps> = ({
-  label,
-  value,
-  name,
-  onChange,
-  className,
-  ...otherInputProps
-}) => {
-  return (
-    <div className="flex flex-row gap-2 pr-2 items-center justify-between">
-      <p className="text-xs">{label}</p>
-      <InputField
-        value={value}
-        name={name}
-        onChange={onChange}
-        className={className}
-        {...otherInputProps}
-      />
-    </div>
-  );
-};
-
 export const ButtonWithCrossIcon: React.FC<{
   onClick: () => void;
   disabled?: boolean;
