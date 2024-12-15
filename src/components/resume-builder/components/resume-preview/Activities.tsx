@@ -1,0 +1,46 @@
+import React from 'react';
+
+// HOOKS
+import { useResumeData } from '../../context/ResumeDataContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
+
+// TYPES
+import type { ActivityItem } from '../../types/resume-data';
+
+export const Activities = () => {
+  const { activities } = useResumeData();
+  const { color } = useResumeTheme();
+
+  return (
+    <div className="my-1">
+      <h2 className="font-medium text-sm" style={{ color }}>
+        {activities.title}
+      </h2>
+      <hr className="w-full my-1" style={{ borderColor: color }} />
+      {activities.activities.map((activity, index) => (
+        <ActivityItem key={`activity_${index}`} index={index} data={activity} />
+      ))}
+    </div>
+  );
+};
+
+const ActivityItem: React.FC<{ index: number; data: ActivityItem }> = ({
+  index,
+  data,
+}) => (
+  <div className="mb-1">
+    <div className="flex justify-between">
+      <div className="font-medium text-xs">
+        {data.institutionName} - {data.activityTitle}
+      </div>
+      <div className="font-medium text-xs">
+        {data.startDate} — {data.endDate}
+      </div>
+    </div>
+    <ul className="list-disc pl-5 mt-1 text-xs">
+      {data.descriptions.map((desc, descIndex) => (
+        <li key={`activity_${index}_description_${descIndex}`}>{desc}</li>
+      ))}
+    </ul>
+  </div>
+);
