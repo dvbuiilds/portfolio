@@ -57,12 +57,8 @@ const renderSection = (sectionName: ActiveSectionName) => {
 };
 
 export const EditPanel: React.FC = () => {
-  const {
-    activeSection,
-    sectionsOrder,
-    toggleDisplayMode,
-    updateActiveSection,
-  } = useLayout();
+  const { activeSection, sectionsOrder, closeEditPanel, updateActiveSection } =
+    useLayout();
 
   const onTabClick = (sectionName: ActiveSectionName) => {
     if (activeSection === sectionName) {
@@ -90,9 +86,7 @@ export const EditPanel: React.FC = () => {
     <div className="w-1/3 h-full relative p-2 border border-gray-300 rounded-md bg-blue-50 border">
       <div className="flex flex-row items-center justify-between mb-2">
         <p className="font-medium">Edit Panel</p>
-        <ButtonWithCrossIcon
-          onClick={() => toggleDisplayMode(SectionNameMapping.EMPTY)}
-        />
+        <ButtonWithCrossIcon onClick={closeEditPanel} />
       </div>
       {renderEditSections()}
     </div>

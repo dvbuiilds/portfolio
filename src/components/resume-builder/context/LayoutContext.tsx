@@ -6,6 +6,7 @@ import { SectionNameMapping } from '../config/section-name-config';
 interface LayoutContextType {
   displayMode: DisplayMode;
   activeSection: ActiveSectionName;
+  closeEditPanel: () => void;
   toggleDisplayMode: (_: ActiveSectionName) => void;
   updateActiveSection: React.Dispatch<React.SetStateAction<ActiveSectionName>>;
   sectionsOrder: Array<ActiveSectionName>;
@@ -30,18 +31,22 @@ const initialSectionsOrder: ActiveSectionName[] = [
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [displayMode, setDisplayMode] = useState<DisplayMode>('preview');
+  const [displayMode, updateDisplayMode] = useState<DisplayMode>('preview');
   const [activeSection, updateActiveSection] = useState<ActiveSectionName>('');
   const [sectionsOrder, updateSectionsOrder] =
     useState<Array<ActiveSectionName>>(initialSectionsOrder);
 
+  const closeEditPanel = () => {
+    updateDisplayMode('preview');
+  };
+
   const toggleDisplayMode = (sectionName: ActiveSectionName) => {
     if (sectionName === activeSection) {
       updateActiveSection('');
-      setDisplayMode('preview');
+      updateDisplayMode('preview');
     } else {
       updateActiveSection(sectionName);
-      setDisplayMode('edit');
+      updateDisplayMode('edit');
     }
   };
 
@@ -50,6 +55,7 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         displayMode,
         activeSection,
+        closeEditPanel,
         toggleDisplayMode,
         updateActiveSection,
         sectionsOrder,
