@@ -79,11 +79,15 @@ export const Resume = () => {
       return;
     }
 
-    const newItems = Array.from(sectionsOrder);
-    const [reorderedItem] = newItems.splice(result.source.index, 1);
-    newItems.splice(result.destination.index, 0, reorderedItem);
-
-    updateSectionsOrder(newItems);
+    updateSectionsOrder((prev) => {
+      // getting new array reference.
+      const newItems = Array.from(prev);
+      // removing the dragged item from the existing array. the index of the dragged item is available in result.source.index.
+      const [reorderedItem] = newItems.splice(result.source.index, 1);
+      // placing the dragged item to the destination index. the destination index is available in result.destination.index.
+      newItems.splice(result?.destination?.index ?? 0, 0, reorderedItem);
+      return newItems;
+    });
   };
 
   const renderSections = () => {

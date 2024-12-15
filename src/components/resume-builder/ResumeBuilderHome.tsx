@@ -25,10 +25,14 @@ export const ResumeBuilderHome = () => {
 
 export const ResumeBuilder: React.FC = () => {
   const { displayMode } = useLayout();
+
+  // We are memoizing this class as the value of resumeWidthClassName is dependent on 2 values of 'displayMode'. So that final className value can be calculated and cached against the corresponding value of displayMode. No need to re-calculating the className value again and again. And at the same time, we can't conditionally change the className string like `w-${displayMode === 'preview' ? '3/4' : '2/3}` on runtime.
   const resumeWidthClassName = useMemo<string>(
     () => (displayMode === 'preview' ? 'w-3/4' : 'w-2/3'),
     [displayMode],
   );
+
+  // We are memoizing the function that needs re-calculation upon change of displayMode.
   const renderEditPanel = useCallback(() => {
     return displayMode === 'edit' ? <EditPanel /> : null;
   }, [displayMode]);

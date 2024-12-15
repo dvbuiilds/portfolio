@@ -149,7 +149,7 @@ export const ResumeDataProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   /**
    * States to save the Resume Data.
-   * At the same time, I decided to keep the states seperate and not a consolidated object, because updating the state can be a tedious task for sections like Work Experience, etc that have big complex objects.
+   * At the same time, I decided to keep the states seperate and not a consolidated object, because updating the state can be a tedious task for sections like Work Experience, etc that have big complex objects. Eg. Title component is not concerned about the WorkExperience state data. But managing one consolidated state in a big object will cause performance issues as updating one description in nth experience in workExperience will re-render the whole resume since state is changed and reloading one big state will be challenging depending on the device.
    */
   const [title, updateTitle] = useState<string>(initialResumeData.title);
   const [socialHandles, updateSocialHandles] = useState<Array<SocialHandle>>(

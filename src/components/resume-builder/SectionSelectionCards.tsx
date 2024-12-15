@@ -19,6 +19,12 @@ const sectionsNameList = Object.keys(SectionIdTitleMapping).filter(
 export const SectionSelectionCards = () => {
   const { sectionsOrder, updateSectionsOrder } = useLayout();
 
+  /**
+   *
+   * @param isSelected boolean
+   * @param sectionName ActiveSectionName
+   * This method was created with these two arguments as the value for 'isSelected' could not de determined in an optimized way within this component. So better this component is invoked inside SectionSelectionCard component that has the calculated value for isSelected prop. The sectionName argument is another requirement that we need for inserting or removing the section from sectionsOrder array.
+   */
   const onSelectionCardClick = (
     isSelected: boolean,
     sectionName: ActiveSectionName,

@@ -12,9 +12,12 @@ import {
 import { useResumeData } from '../../context/ResumeDataContext';
 
 // COMPONENTS
-import { InputField } from './InputField';
 import { DraggableWrapper } from '../wrappers/DraggableWrapper';
-import { BlueButton, ButtonWithCrossIcon } from './EditPanelComponents';
+import {
+  BlueButton,
+  ButtonWithCrossIcon,
+  InputField,
+} from './EditPanelComponents';
 
 // TYPES
 import type { SocialHandle } from '../../types/resume-data';
@@ -30,11 +33,15 @@ export const SocialHandlesEditBox: React.FC = () => {
       return;
     }
 
-    const newItems = Array.from(socialHandles);
-    const [reorderedItem] = newItems.splice(result.source.index, 1);
-    newItems.splice(result.destination.index, 0, reorderedItem);
-
-    updateSocialHandles(newItems);
+    updateSocialHandles((prev) => {
+      // getting new array reference.
+      const newItems = Array.from(prev);
+      // removing the dragged item from the existing array. the index of the dragged item is available in result.source.index.
+      const [reorderedItem] = newItems.splice(result.source.index, 1);
+      // placing the dragged item to the destination index. the destination index is available in result.destination.index.
+      newItems.splice(result?.destination?.index ?? 0, 0, reorderedItem);
+      return newItems;
+    });
   };
 
   const onChangeHandler = (
