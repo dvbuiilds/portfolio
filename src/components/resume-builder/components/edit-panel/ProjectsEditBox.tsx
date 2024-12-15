@@ -5,11 +5,11 @@ import { useResumeData } from '../../context/ResumeDataContext';
 
 // COMPONENTS
 import { Experience, Project } from '../../types/resume-data';
-import { InputField } from './InputField';
 import {
   BlueButton,
   ButtonWithCrossIcon,
   ButtonWithPlusIcon,
+  InputField,
 } from './EditPanelComponents';
 
 export const ProjectsEditBox: React.FC = () => {

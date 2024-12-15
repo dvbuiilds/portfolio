@@ -1,8 +1,17 @@
 import React from 'react';
+
+// HOOKS
 import { useResumeData } from '../../context/ResumeDataContext';
-import { InputField } from './InputField';
-import { BlueButton, ButtonWithCrossIcon } from './EditPanelComponents';
-import { AchievementItem } from '../../types/resume-data';
+
+// COMPONENTS
+import {
+  BlueButton,
+  ButtonWithCrossIcon,
+  InputField,
+} from './EditPanelComponents';
+
+// TYPES
+import type { AchievementItem } from '../../types/resume-data';
 
 export const AchievementsEditBox: React.FC = () => {
   const { achievements, updateAchievements } = useResumeData();

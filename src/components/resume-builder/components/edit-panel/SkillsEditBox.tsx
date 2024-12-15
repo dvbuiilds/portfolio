@@ -1,7 +1,14 @@
 import React from 'react';
+
+// HOOKS
 import { useResumeData } from '../../context/ResumeDataContext';
-import { InputField } from './InputField';
-import { BlueButton, ButtonWithCrossIcon } from './EditPanelComponents';
+
+// COMPONENTS
+import {
+  BlueButton,
+  ButtonWithCrossIcon,
+  InputField,
+} from './EditPanelComponents';
 
 export const SkillsEditBox: React.FC = () => {
   const { skills, updateSkills } = useResumeData();

@@ -5,8 +5,11 @@ import { useResumeData } from '../../context/ResumeDataContext';
 
 // COMPONENTS
 import { Course } from '../../types/resume-data';
-import { InputField } from './InputField';
-import { BlueButton, ButtonWithCrossIcon } from './EditPanelComponents';
+import {
+  BlueButton,
+  ButtonWithCrossIcon,
+  InputField,
+} from './EditPanelComponents';
 
 export const EducationEditBox: React.FC = () => {
   const { education, updateEducation } = useResumeData();
