@@ -50,7 +50,7 @@ export const SearchBox: React.FC<SearchBoxPropsType> = (props) => {
   };
 
   return (
-    <div className="my-4 flex flex-col items-start justify-center relative w-[800px] max-md:w-[350px] ">
+    <div className="my-4 flex flex-col items-start justify-center relative w-[800px] max-md:w-[350px]">
       <input
         type="text"
         id="link"

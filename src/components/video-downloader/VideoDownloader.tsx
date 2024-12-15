@@ -53,7 +53,7 @@ export const VideoDownloader = () => {
         <div className="flex flex-col gap-2 items-center">
           {mediaLinks.length ? (
             <div>
-              <h2 className="my-2 text-2xl font-bold ">Download Options</h2>
+              <h2 className="my-2 text-2xl font-bold">Download Options</h2>
               {mediaLinks.map((mediaItem, index) => (
                 <DownloadOption
                   key={index}
