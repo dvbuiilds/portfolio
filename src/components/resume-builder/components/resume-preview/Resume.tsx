@@ -1,5 +1,5 @@
 import React from 'react';
-import { Montserrat } from 'next/font/google';
+import { Cormorant_Garamond } from 'next/font/google';
 
 // THIRD_PARTY
 import {
@@ -11,6 +11,7 @@ import {
 
 // HOOKS
 import { useLayout } from '../../context/LayoutContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
 
 // COMPONENTS
 import { Title } from './Title';
@@ -29,8 +30,9 @@ import { ActiveSectionName } from '../../types/layout';
 // CONFIGS
 import { SectionNameMapping } from '../../config/section-name-config';
 
-const montserrat = Montserrat({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 const A4_SHEET_CONFIG = {
@@ -72,6 +74,16 @@ const renderSection = (sectionName: ActiveSectionName) => {
 
 export const Resume = () => {
   const { sectionsOrder, updateSectionsOrder } = useLayout();
+  const { font } = useResumeTheme();
+
+  // Get the appropriate font className based on the selected font
+  const getFontClassName = () => {
+    if (font === 'Cormorant Garamond') {
+      return cormorantGaramond.className;
+    }
+    // Times New Roman is a system font, no className needed
+    return '';
+  };
 
   const onDragEnd = (result: DropResult<string>) => {
     if (!result.destination) return;
@@ -128,7 +140,12 @@ export const Resume = () => {
 
   return (
     <div
-      className={`${montserrat.className} shadow-md w-3/4 bg-slate-50 mt-2 p-4 flex flex-col`}
+      className={`${getFontClassName()} shadow-md w-3/4 bg-slate-50 mt-2 p-4 flex flex-col`}
+      style={
+        font === 'Times New Roman'
+          ? { fontFamily: 'Times New Roman, serif' }
+          : undefined
+      }
     >
       {renderSections()}
     </div>
