@@ -1,11 +1,14 @@
 import React from 'react';
 
-// HOOKS
-import { useResumeData } from '../../context/ResumeDataContext';
-import { useResumeTheme } from '../../context/ResumeThemeContext';
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
 
 // TYPES
 import type { ActivityItem } from '../../types/resume-data';
+
+// HOOKS
+import { useResumeData } from '../../context/ResumeDataContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
 
 export const Activities = () => {
   const { activities } = useResumeData();
@@ -16,7 +19,7 @@ export const Activities = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {activities.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       {activities.activities.map((activity, index) => (
         <ActivityItem key={`activity_${index}`} index={index} data={activity} />
       ))}

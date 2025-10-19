@@ -1,11 +1,14 @@
 import React from 'react';
 
-// HOOKS
-import { useResumeData } from '../../context/ResumeDataContext';
-import { useResumeTheme } from '../../context/ResumeThemeContext';
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
 
 // TYPES
 import type { SkillSetItem } from '../../types/resume-data';
+
+// HOOKS
+import { useResumeData } from '../../context/ResumeDataContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
 
 export const Skills: React.FC = () => {
   const { skills } = useResumeData();
@@ -16,7 +19,7 @@ export const Skills: React.FC = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {skills.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       <div className="mt-2">
         {skills.skillSet.map((skillSetItem, index) => (
           <SkillSet key={`skillSet_${index}`} data={skillSetItem} />

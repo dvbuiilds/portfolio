@@ -9,3 +9,12 @@ export const themeColors = {
 
 // Theme Colors Read Only
 export const themeColorsReadOnly = Object.freeze(themeColors);
+
+// Theme Fonts Mapping
+export const themeFonts = {
+  cormorantGaramond: 'Cormorant Garamond',
+  timesNewRoman: 'Times New Roman',
+} as const;
+
+// Theme Fonts Read Only
+export const themeFontsReadOnly = Object.freeze(themeFonts);
