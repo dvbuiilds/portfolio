@@ -1,11 +1,14 @@
 import React from 'react';
 
-// HOOKS
-import { useResumeData } from '../../context/ResumeDataContext';
-import { useResumeTheme } from '../../context/ResumeThemeContext';
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
 
 // TYPES
 import type { Project } from '../../types/resume-data';
+
+// HOOKS
+import { useResumeData } from '../../context/ResumeDataContext';
+import { useResumeTheme } from '../../context/ResumeThemeContext';
 
 export const Projects: React.FC = () => {
   const { projects } = useResumeData();
@@ -16,7 +19,7 @@ export const Projects: React.FC = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {projects.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       {projects.projects.map((project, index) => (
         <Project key={`projects_${index}`} index={index} data={project} />
       ))}

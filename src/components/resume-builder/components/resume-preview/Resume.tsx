@@ -102,8 +102,10 @@ export const Resume = () => {
     });
   };
 
-  const renderSections = () => {
-    return (
+  return (
+    <div
+      className={`${getFontClassName()} shadow-md w-3/4 bg-slate-50 mt-2 p-4 flex flex-col`}
+    >
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
           {(provided) => (
@@ -135,19 +137,6 @@ export const Resume = () => {
           )}
         </Droppable>
       </DragDropContext>
-    );
-  };
-
-  return (
-    <div
-      className={`${getFontClassName()} shadow-md w-3/4 bg-slate-50 mt-2 p-4 flex flex-col`}
-      style={
-        font === 'Times New Roman'
-          ? { fontFamily: 'Times New Roman, serif' }
-          : undefined
-      }
-    >
-      {renderSections()}
     </div>
   );
 };

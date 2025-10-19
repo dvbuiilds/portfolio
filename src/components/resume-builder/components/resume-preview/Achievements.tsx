@@ -1,7 +1,14 @@
 import React from 'react';
+
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
+
+// TYPES
+import type { AchievementItem } from '../../types/resume-data';
+
+// HOOKS
 import { useResumeData } from '../../context/ResumeDataContext';
 import { useResumeTheme } from '../../context/ResumeThemeContext';
-import type { AchievementItem } from '../../types/resume-data';
 
 export const Achievements: React.FC = () => {
   const { achievements } = useResumeData();
@@ -12,7 +19,7 @@ export const Achievements: React.FC = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {achievements.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       {achievements.achievementList.map((achievement, index) => (
         <AchievementItem key={`achievement_${index}`} data={achievement} />
       ))}

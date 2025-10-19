@@ -1,5 +1,8 @@
 import React from 'react';
 
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
+
 // HOOKS
 import { useResumeData } from '../../context/ResumeDataContext';
 import { useResumeTheme } from '../../context/ResumeThemeContext';
@@ -16,7 +19,7 @@ export const Education: React.FC = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {education.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       {education.courses.map((course, index) => (
         <Course key={`educationCourse_${index}`} index={index} data={course} />
       ))}

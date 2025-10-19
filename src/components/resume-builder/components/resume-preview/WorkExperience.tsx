@@ -1,11 +1,14 @@
 import React from 'react';
 
+// TYPES
+import type { Experience } from '../../types/resume-data';
+
+// COMPONENTS
+import { HorizontalRule } from './HorizontalRule';
+
 // HOOKS
 import { useResumeData } from '../../context/ResumeDataContext';
 import { useResumeTheme } from '../../context/ResumeThemeContext';
-
-// TYPES
-import type { Experience } from '../../types/resume-data';
 
 export const WorkExperience: React.FC = () => {
   const { workExperience } = useResumeData();
@@ -16,7 +19,7 @@ export const WorkExperience: React.FC = () => {
       <h2 className="font-medium text-sm" style={{ color }}>
         {workExperience.title}
       </h2>
-      <hr className="w-full my-1" style={{ borderColor: color }} />
+      <HorizontalRule color={color} />
       {workExperience.experience.map((exp, index) => (
         <Experience key={`workExperience_${index}`} index={index} data={exp} />
       ))}
