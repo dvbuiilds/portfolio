@@ -11,7 +11,7 @@ import type {
   WorkExperience,
 } from '../../types/resume-data';
 import type { ThemeColorValues, ThemeFontValues } from '../../types/theme';
-import { getPdfStyles } from '../../utils/pdfTheme';
+import { usePDFStyles } from '../../utils/pdfTheme';
 import { SectionNameMapping } from '../../config/section-name-config';
 
 // Import to register fonts
@@ -54,7 +54,7 @@ export const PDFResume: React.FC<PDFResumeProps> = ({
   color,
   font,
 }) => {
-  const styles = getPdfStyles(color, font);
+  const styles = usePDFStyles(color, font);
 
   const renderPDFSection = (sectionName: ActiveSectionName) => {
     switch (sectionName) {

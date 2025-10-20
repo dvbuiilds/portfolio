@@ -4,7 +4,7 @@ import type { ThemeColorValues, ThemeFontValues } from '../types/theme';
 /**
  * Get PDF styles based on theme (color and font)
  */
-export const getPdfStyles = (
+export const usePDFStyles = (
   color: ThemeColorValues,
   font: ThemeFontValues,
 ) => {
@@ -21,8 +21,8 @@ export const getPdfStyles = (
       lineHeight: 1.4,
     },
     section: {
-      marginBottom: 4,
-      marginTop: 4,
+      marginBottom: 1,
+      marginTop: 1,
     },
     heading: {
       fontSize: 14,
@@ -58,21 +58,21 @@ export const getPdfStyles = (
     itemTitle: {
       fontSize: 12,
       fontWeight: 500,
-      marginBottom: 4,
+      marginBottom: 2,
     },
     itemSubtitle: {
       fontSize: 12,
       fontStyle: 'italic',
-      marginBottom: 4,
+      marginBottom: 2,
     },
     itemDate: {
       fontSize: 12,
       color: '#666',
-      marginBottom: 4,
+      marginBottom: 2,
     },
     itemDescription: {
       fontSize: 12,
-      marginBottom: 2,
+      marginBottom: 1,
       paddingLeft: 20,
     },
     bulletPoint: {
@@ -89,7 +89,7 @@ export const getPdfStyles = (
     },
     row: {
       flexDirection: 'row',
-      marginBottom: 4,
+      marginBottom: 2,
     },
     column: {
       flexDirection: 'column',

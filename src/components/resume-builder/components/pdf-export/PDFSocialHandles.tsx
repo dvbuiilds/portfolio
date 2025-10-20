@@ -32,7 +32,6 @@ export const PDFSocialHandles: React.FC<PDFSocialHandlesProps> = ({
           </React.Fragment>
         ))}
       </View>
-      <View style={styles.horizontalRule} />
     </View>
   );
 };
