@@ -3,6 +3,7 @@ import { Font } from '@react-pdf/renderer';
 /**
  * Register custom fonts for PDF generation
  * Cormorant Garamond from Google Fonts
+ * Inter from Google Fonts
  * Times New Roman is built-in as 'Times-Roman'
  */
 export const registerPDFFonts = () => {
@@ -34,27 +35,27 @@ export const registerPDFFonts = () => {
       },
       // Italic weights (needed because styles use fontStyle: 'italic')
       {
-        src: '/fonts/CormorantGaramond-LightItalic.ttf',
+        src: '/fonts/CormorantGaramond/CormorantGaramond-LightItalic.ttf',
         fontWeight: 300,
         fontStyle: 'italic',
       },
       {
-        src: '/fonts/CormorantGaramond-Italic.ttf',
+        src: '/fonts/CormorantGaramond/CormorantGaramond-Italic.ttf',
         fontWeight: 400,
         fontStyle: 'italic',
       },
       {
-        src: '/fonts/CormorantGaramond-MediumItalic.ttf',
+        src: '/fonts/CormorantGaramond/CormorantGaramond-MediumItalic.ttf',
         fontWeight: 500,
         fontStyle: 'italic',
       },
       {
-        src: '/fonts/CormorantGaramond-SemiBoldItalic.ttf',
+        src: '/fonts/CormorantGaramond/CormorantGaramond-SemiBoldItalic.ttf',
         fontWeight: 600,
         fontStyle: 'italic',
       },
       {
-        src: '/fonts/CormorantGaramond-BoldItalic.ttf',
+        src: '/fonts/CormorantGaramond/CormorantGaramond-BoldItalic.ttf',
         fontWeight: 700,
         fontStyle: 'italic',
       },
@@ -101,6 +102,87 @@ export const registerPDFFonts = () => {
       },
       {
         src: 'https://fonts.gstatic.com/s/cormorantgaramond/v16/co3gmX5slCNuHLi8bLeY9MK7whWMhyjQAllvuQWJ5heb_w.ttf',
+        fontWeight: 700,
+        fontStyle: 'italic',
+      },
+    ],
+  });
+
+  // Register Inter font for PDF export
+  Font.register({
+    family: 'Inter',
+    fonts: [
+      // Regular weights (prefer local files, with CDN fallback)
+      {
+        src: '/fonts/Inter/Inter-Regular.ttf',
+        fontWeight: 400,
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2',
+        fontWeight: 400,
+      },
+      {
+        src: '/fonts/Inter/Inter-Medium.ttf',
+        fontWeight: 500,
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff2',
+        fontWeight: 500,
+      },
+      {
+        src: '/fonts/Inter/Inter-SemiBold.ttf',
+        fontWeight: 600,
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiA.woff2',
+        fontWeight: 600,
+      },
+      {
+        src: '/fonts/Inter/Inter-Bold.ttf',
+        fontWeight: 700,
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hiA.woff2',
+        fontWeight: 700,
+      },
+      // Italic weights (needed because styles use fontStyle: 'italic')
+      {
+        src: '/fonts/Inter/Inter-Italic.ttf',
+        fontWeight: 400,
+        fontStyle: 'italic',
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2',
+        fontWeight: 400,
+        fontStyle: 'italic',
+      },
+      {
+        src: '/fonts/Inter/Inter-MediumItalic.ttf',
+        fontWeight: 500,
+        fontStyle: 'italic',
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2',
+        fontWeight: 500,
+        fontStyle: 'italic',
+      },
+      {
+        src: '/fonts/Inter/Inter-SemiBoldItalic.ttf',
+        fontWeight: 600,
+        fontStyle: 'italic',
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1pL7SUc.woff2',
+        fontWeight: 600,
+        fontStyle: 'italic',
+      },
+      {
+        src: '/fonts/Inter/Inter-BoldItalic.ttf',
+        fontWeight: 700,
+        fontStyle: 'italic',
+      },
+      {
+        src: 'https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa0ZL7SUc.woff2',
         fontWeight: 700,
         fontStyle: 'italic',
       },

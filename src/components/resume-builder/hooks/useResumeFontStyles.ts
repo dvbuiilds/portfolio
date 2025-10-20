@@ -9,16 +9,21 @@ interface FontStyles {
 interface UseResumeFontStylesProps {
   font: ThemeFontValues;
   cormorantGaramondClassName: string;
+  interClassName: string;
 }
 
 export const useResumeFontStyles = ({
   font,
   cormorantGaramondClassName,
+  interClassName,
 }: UseResumeFontStylesProps): FontStyles => {
   return useMemo(() => {
     const getFontClassName = () => {
       if (font === 'Cormorant Garamond') {
         return cormorantGaramondClassName;
+      }
+      if (font === 'Inter') {
+        return interClassName;
       }
       return '';
     };
@@ -34,5 +39,5 @@ export const useResumeFontStyles = ({
       className: getFontClassName(),
       style: getFontStyle(),
     };
-  }, [font, cormorantGaramondClassName]);
+  }, [font]);
 };

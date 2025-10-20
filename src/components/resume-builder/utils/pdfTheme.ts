@@ -9,7 +9,11 @@ export const usePDFStyles = (
   font: ThemeFontValues,
 ) => {
   const fontFamily =
-    font === 'Cormorant Garamond' ? 'Cormorant Garamond' : 'Times-Roman';
+    font === 'Cormorant Garamond'
+      ? 'Cormorant Garamond'
+      : font === 'Inter'
+        ? 'Inter'
+        : 'Times-Roman';
 
   return StyleSheet.create({
     page: {

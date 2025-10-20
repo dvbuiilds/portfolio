@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cormorant_Garamond } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 
 // THIRD_PARTY
 import {
@@ -36,6 +36,8 @@ const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 });
+
+const inter = Inter({ subsets: ['latin'] });
 
 const A4_SHEET_CONFIG = {
   width: '595px',
@@ -82,6 +84,7 @@ export const Resume = () => {
   const { className: fontClassName, style: fontStyle } = useResumeFontStyles({
     font,
     cormorantGaramondClassName: cormorantGaramond.className,
+    interClassName: inter.className,
   });
 
   // Use custom hook for drag and drop functionality
