@@ -24,6 +24,9 @@
     "paths": {
       "downloader/*": [
         "./src/*"
+      ],
+      "@/*": [
+        "./src/*"
       ]
     },
     "target": "ES2017"

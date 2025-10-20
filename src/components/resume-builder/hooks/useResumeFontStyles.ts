@@ -39,5 +39,5 @@ export const useResumeFontStyles = ({
       className: getFontClassName(),
       style: getFontStyle(),
     };
-  }, [font]);
+  }, [font, cormorantGaramondClassName, interClassName]);
 };
